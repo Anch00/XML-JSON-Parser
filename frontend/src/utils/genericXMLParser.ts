@@ -290,9 +290,10 @@ export class GenericExporter {
       const itemId = item.id || index + 1;
       xml += `  <item id="${this.escapeXML(String(itemId))}">\n`;
 
-      const serialize = (obj: any, indent = "    ") => {
+      const serialize = (obj: any, isRoot = false, indent = "    ") => {
         Object.entries(obj).forEach(([key, value]) => {
-          if (key === "id") return; // already used as attribute
+          // Only skip id when serializing the root/top-level item (it's used as attribute)
+          if (key === "id" && isRoot) return;
           const tag = this.safeTagName(key);
 
           if (value == null || value === "") {
@@ -302,7 +303,7 @@ export class GenericExporter {
             value.forEach((v) => {
               if (typeof v === "object") {
                 xml += `${indent}<${tag}>\n`;
-                serialize(v, indent + "  ");
+                serialize(v, false, indent + "  ");
                 xml += `${indent}</${tag}>\n`;
               } else {
                 xml += `${indent}<${tag}>${this.escapeXML(
@@ -312,7 +313,7 @@ export class GenericExporter {
             });
           } else if (typeof value === "object") {
             xml += `${indent}<${tag}>\n`;
-            serialize(value, indent + "  ");
+            serialize(value, false, indent + "  ");
             xml += `${indent}</${tag}>\n`;
           } else {
             xml += `${indent}<${tag}>${this.escapeXML(
@@ -322,7 +323,7 @@ export class GenericExporter {
         });
       };
 
-      serialize(item);
+      serialize(item, true);
 
       xml += `  </item>\n`;
     });

@@ -301,15 +301,20 @@ app.get("/api/export/xml", (req, res) => {
     safeTagName("filteredResults")
   );
 
-  const appendValue = (parent, key, value) => {
+  const appendValue = (parent, key, value, depth = 0) => {
     const tag = safeTagName(key);
+    // Skip top-level id because we set it as attribute; but include nested ids
+    if (key === "id" && depth === 0) return;
+
     if (value == null) {
       parent.ele(tag).txt("").up();
     } else if (Array.isArray(value)) {
       value.forEach((v) => {
         if (typeof v === "object") {
           const child = parent.ele(tag);
-          Object.keys(v).forEach((vk) => appendValue(child, vk, v[vk]));
+          Object.keys(v).forEach((vk) =>
+            appendValue(child, vk, v[vk], depth + 1)
+          );
           child.up();
         } else {
           parent.ele(tag).txt(String(v)).up();
@@ -317,7 +322,9 @@ app.get("/api/export/xml", (req, res) => {
       });
     } else if (typeof value === "object") {
       const child = parent.ele(tag);
-      Object.keys(value).forEach((vk) => appendValue(child, vk, value[vk]));
+      Object.keys(value).forEach((vk) =>
+        appendValue(child, vk, value[vk], depth + 1)
+      );
       child.up();
     } else {
       parent.ele(tag).txt(String(value)).up();
