@@ -88,7 +88,7 @@ Primer strukture:
 | Build Tool    | Vite                                |
 | XML Parsing   | Native DOM Parser API               |
 | CSS Framework | Tailwind CSS (modern responsive UI) |
-| Deployment    | Lokalni razvoj (brez backenda)      |
+| Backend       | Node + Express                      |
 
 ## ⚙️ Namestitev in zagon
 
@@ -200,11 +200,6 @@ git push origin feature/nova-funkcija
 - 🎨 Sodobna barvna shema (Tailwind)
 
 Uporabniku prijazno orodje, ki kombinira moč XML struktur z enostavnostjo sodobnih spletnih tehnologij.
-
-## 📄 Licenca
-
-Projekt je objavljen pod MIT licenco.
-Lahko uporabljaš, spreminjaš in deliš, dokler ohraniš obvestilo o avtorstvu.
 
 ## 👨‍💻 Avtor
 
