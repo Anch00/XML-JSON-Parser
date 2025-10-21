@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stranke>
+    <stranka id="STR001">
+        <ime>Marko</ime>
+        <priimek>Novak</priimek>
+        <email>marko.novak@example.com</email>
+        <telefon>031 123 456</telefon>
+        <naslov>Tržaška cesta 25, 1000 Ljubljana</naslov>
+        <datumRegistracije>2023-03-15</datumRegistracije>
+        <aktivn>true</aktivn>
+        <tipStranke>Fizična oseba</tipStranke>
+        <popust>2.5</popust>
+        <skupniNakupi>2580.45</skupniNakupi>
+        <datumZadnjegaNakupa>2024-10-15</datumZadnjegaNakupa>
+        <opomba>VIP stranka</opomba>
+    </stranka>
+    <stranka id="STR002">
+        <ime>Ana</ime>
+        <priimek>Kovač</priimek>
+        <email>ana.kovac@firma.si</email>
+        <telefon>041 987 654</telefon>
+        <naslov>Cankarjeva ulica 12, 2000 Maribor</naslov>
+        <datumRegistracije>2022-08-20</datumRegistracije>
+        <aktivn>true</aktivn>
+        <tipStranke>Pravna oseba</tipStranke>
+        <popust>5.0</popust>
+        <skupniNakupi>1240.87</skupniNakupi>
+        <datumZadnjegaNakupa>2024-10-12</datumZadnjegaNakupa>
+        <opomba></opomba>
+    </stranka>
+    <stranka id="STR003">
+        <ime>Peter</ime>
+        <priimek>Krajnc</priimek>
+        <email>peter.krajnc@email.com</email>
+        <telefon>051 456 789</telefon>
+        <naslov>Prešernova cesta 33, 3000 Celje</naslov>
+        <datumRegistracije>2023-11-10</datumRegistracije>
+        <aktivn>true</aktivn>
+        <tipStranke>Fizična oseba</tipStranke>
+        <popust>1.0</popust>
+        <skupniNakupi>895.20</skupniNakupi>
+        <datumZadnjegaNakupa>2024-10-10</datumZadnjegaNakupa>
+        <opomba>Redno naroča</opomba>
+    </stranka>
+    <stranka id="STR004">
+        <ime>Maja</ime>
+        <priimek>Zorko</priimek>
+        <email>maja.zorko@podjetje.si</email>
+        <telefon>070 111 222</telefon>
+        <naslov>Slovenska cesta 50, 1000 Ljubljana</naslov>
+        <datumRegistracije>2021-05-18</datumRegistracije>
+        <aktivn>true</aktivn>
+        <tipStranke>Pravna oseba</tipStranke>
+        <popust>7.5</popust>
+        <skupniNakupi>4567.89</skupniNakupi>
+        <datumZadnjegaNakupa>2024-10-05</datumZadnjegaNakupa>
+        <opomba>Velik kupec</opomba>
+    </stranka>
+    <stranka id="STR005">
+        <ime>Tina</ime>
+        <priimek>Oblak</priimek>
+        <email>tina.oblak@gmail.com</email>
+        <telefon>030 333 444</telefon>
+        <naslov>Trubarjeva cesta 80, 1000 Ljubljana</naslov>
+        <datumRegistracije>2024-01-25</datumRegistracije>
+        <aktivn>true</aktivn>
+        <tipStranke>Fizična oseba</tipStranke>
+        <popust>0.0</popust>
+        <skupniNakupi>199.98</skupniNakupi>
+        <datumZadnjegaNakupa>2024-10-03</datumZadnjegaNakupa>
+        <opomba>Nova stranka</opomba>
+    </stranka>
+    <stranka id="STR006">
+        <ime>Miha</ime>
+        <priimek>Kranjc</priimek>
+        <email>miha.kranjc@tech.si</email>
+        <telefon>040 555 666</telefon>
+        <naslov>Koroška cesta 15, 4000 Kranj</naslov>
+        <datumRegistracije>2022-12-08</datumRegistracije>
+        <aktivn>true</aktivn>
+        <tipStranke>Pravna oseba</tipStranke>
+        <popust>3.0</popust>
+        <skupniNakupi>1250.50</skupniNakupi>
+        <datumZadnjegaNakupa>2024-09-28</datumZadnjegaNakupa>
+        <opomba>Gaming entuzijast</opomba>
+    </stranka>
+    <stranka id="STR007">
+        <ime>Sara</ime>
+        <priimek>Božič</priimek>
+        <email>sara.bozic@it-solutions.si</email>
+        <telefon>050 777 888</telefon>
+        <naslov>Vegova ulica 8, 1000 Ljubljana</naslov>
+        <datumRegistracije>2020-09-14</datumRegistracije>
+        <aktivn>true</aktivn>
+        <tipStranke>Pravna oseba</tipStranke>
+        <popust>6.0</popust>
+        <skupniNakupi>3200.75</skupniNakupi>
+        <datumZadnjegaNakupa>2024-09-25</datumZadnjegaNakupa>
+        <opomba>IT strokovnjakinja</opomba>
+    </stranka>
+    <stranka id="STR008">
+        <ime>Luka</ime>
+        <priimek>Vidmar</priimek>
+        <email>luka.vidmar@agency.com</email>
+        <telefon>060 999 000</telefon>
+        <naslov>Dunajska cesta 45, 1000 Ljubljana</naslov>
+        <datumRegistracije>2023-07-22</datumRegistracije>
+        <aktivn>false</aktivn>
+        <tipStranke>Pravna oseba</tipStranke>
+        <popust>4.0</popust>
+        <skupniNakupi>850.25</skupniNakupi>
+        <datumZadnjegaNakupa>2024-09-18</datumZadnjegaNakupa>
+        <opomba>Trenutno neaktiven</opomba>
+    </stranka>
+</stranke>

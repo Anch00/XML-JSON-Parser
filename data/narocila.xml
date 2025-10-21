@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<narocila>
+    <narocilo id="NAR001">
+        <strankaId>STR001</strankaId>
+        <artikelId>ART001</artikelId>
+        <dobaviteljId>DOB001</dobaviteljId>
+        <datumNarocila>2024-10-15</datumNarocila>
+        <kolicina>2</kolicina>
+        <cenaPoKos>899.99</cenaPoKos>
+        <skupnaCena>1799.98</skupnaCena>
+        <status>Poslano</status>
+        <datumDostave>2024-10-18</datumDostave>
+        <naslovDostave>Tržaška cesta 25, 1000 Ljubljana</naslovDostave>
+        <opomba>Hitro naročilo</opomba>
+        <placilniNacin>Kartica</placilniNacin>
+        <popust>0.0</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR002">
+        <strankaId>STR002</strankaId>
+        <artikelId>ART005</artikelId>
+        <dobaviteljId>DOB002</dobaviteljId>
+        <datumNarocila>2024-10-12</datumNarocila>
+        <kolicina>5</kolicina>
+        <cenaPoKos>15.99</cenaPoKos>
+        <skupnaCena>79.95</skupnaCena>
+        <status>Dostavljeno</status>
+        <datumDostave>2024-10-14</datumDostave>
+        <naslovDostave>Cankarjeva ulica 12, 2000 Maribor</naslovDostave>
+        <opomba></opomba>
+        <placilniNacin>Polog</placilniNacin>
+        <popust>5.0</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR003">
+        <strankaId>STR003</strankaId>
+        <artikelId>ART004</artikelId>
+        <dobaviteljId>DOB003</dobaviteljId>
+        <datumNarocila>2024-10-10</datumNarocila>
+        <kolicina>1</kolicina>
+        <cenaPoKos>320.00</cenaPoKos>
+        <skupnaCena>320.00</skupnaCena>
+        <status>V obdelavi</status>
+        <datumDostave></datumDostave>
+        <naslovDostave>Prešernova cesta 33, 3000 Celje</naslovDostave>
+        <opomba>Urgent - potrebujem do petka</opomba>
+        <placilniNacin>Kartica</placilniNacin>
+        <popust>3.2</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR004">
+        <strankaId>STR001</strankaId>
+        <artikelId>ART002</artikelId>
+        <dobaviteljId>DOB002</dobaviteljId>
+        <datumNarocila>2024-10-08</datumNarocila>
+        <kolicina>3</kolicina>
+        <cenaPoKos>79.99</cenaPoKos>
+        <skupnaCena>239.97</skupnaCena>
+        <status>Dostavljeno</status>
+        <datumDostave>2024-10-11</datumDostave>
+        <naslovDostave>Tržaška cesta 25, 1000 Ljubljana</naslovDostave>
+        <opomba>Za pisarno</opomba>
+        <placilniNacin>Nakazilo</placilniNacin>
+        <popust>7.0</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR005">
+        <strankaId>STR004</strankaId>
+        <artikelId>ART006</artikelId>
+        <dobaviteljId>DOB004</dobaviteljId>
+        <datumNarocila>2024-10-05</datumNarocila>
+        <kolicina>1</kolicina>
+        <cenaPoKos>299.99</cenaPoKos>
+        <skupnaCena>299.99</skupnaCena>
+        <status>Poslano</status>
+        <datumDostave>2024-10-08</datumDostave>
+        <naslovDostave>Slovenska cesta 50, 1000 Ljubljana</naslovDostave>
+        <opomba>Darilo</opomba>
+        <placilniNacin>Kartica</placilniNacin>
+        <popust>0.0</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR006">
+        <strankaId>STR005</strankaId>
+        <artikelId>ART009</artikelId>
+        <dobaviteljId>DOB002</dobaviteljId>
+        <datumNarocila>2024-10-03</datumNarocila>
+        <kolicina>2</kolicina>
+        <cenaPoKos>99.99</cenaPoKos>
+        <skupnaCena>199.98</skupnaCena>
+        <status>Dostavljeno</status>
+        <datumDostave>2024-10-06</datumDostave>
+        <naslovDostave>Trubarjeva cesta 80, 1000 Ljubljana</naslovDostave>
+        <opomba>Backup disks</opomba>
+        <placilniNacin>Polog</placilniNacin>
+        <popust>7.0</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR007">
+        <strankaId>STR002</strankaId>
+        <artikelId>ART003</artikelId>
+        <dobaviteljId>DOB001</dobaviteljId>
+        <datumNarocila>2024-10-01</datumNarocila>
+        <kolicina>1</kolicina>
+        <cenaPoKos>149.50</cenaPoKos>
+        <skupnaCena>149.50</skupnaCena>
+        <status>Preklicano</status>
+        <datumDostave></datumDostave>
+        <naslovDostave>Cankarjeva ulica 12, 2000 Maribor</naslovDostave>
+        <opomba>Stranka je preklicala naročilo</opomba>
+        <placilniNacin>Kartica</placilniNacin>
+        <popust>5.5</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR008">
+        <strankaId>STR006</strankaId>
+        <artikelId>ART013</artikelId>
+        <dobaviteljId>DOB003</dobaviteljId>
+        <datumNarocila>2024-09-28</datumNarocila>
+        <kolicina>1</kolicina>
+        <cenaPoKos>649.99</cenaPoKos>
+        <skupnaCena>649.99</skupnaCena>
+        <status>Dostavljeno</status>
+        <datumDostave>2024-10-02</datumDostave>
+        <naslovDostave>Koroška cesta 15, 4000 Kranj</naslovDostave>
+        <opomba>Gaming setup</opomba>
+        <placilniNacin>Nakazilo</placilniNacin>
+        <popust>3.2</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR009">
+        <strankaId>STR007</strankaId>
+        <artikelId>ART014</artikelId>
+        <dobaviteljId>DOB002</dobaviteljId>
+        <datumNarocila>2024-09-25</datumNarocila>
+        <kolicina>3</kolicina>
+        <cenaPoKos>120.00</cenaPoKos>
+        <skupnaCena>360.00</skupnaCena>
+        <status>Dostavljeno</status>
+        <datumDostave>2024-09-28</datumDostave>
+        <naslovDostave>Vegova ulica 8, 1000 Ljubljana</naslovDostave>
+        <opomba>Server upgrade</opomba>
+        <placilniNacin>Kartica</placilniNacin>
+        <popust>7.0</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR010">
+        <strankaId>STR003</strankaId>
+        <artikelId>ART007</artikelId>
+        <dobaviteljId>DOB001</dobaviteljId>
+        <datumNarocila>2024-09-20</datumNarocila>
+        <kolicina>4</kolicina>
+        <cenaPoKos>89.90</cenaPoKos>
+        <skupnaCena>359.60</skupnaCena>
+        <status>Dostavljeno</status>
+        <datumDostave>2024-09-24</datumDostave>
+        <naslovDostave>Prešernova cesta 33, 3000 Celje</naslovDostave>
+        <opomba>Za konferenčno sobo</opomba>
+        <placilniNacin>Polog</placilniNacin>
+        <popust>5.5</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR011">
+        <strankaId>STR008</strankaId>
+        <artikelId>ART015</artikelId>
+        <dobaviteljId>DOB004</dobaviteljId>
+        <datumNarocila>2024-09-18</datumNarocila>
+        <kolicina>6</kolicina>
+        <cenaPoKos>45.50</cenaPoKos>
+        <skupnaCena>273.00</skupnaCena>
+        <status>Dostavljeno</status>
+        <datumDostave>2024-09-21</datumDostave>
+        <naslovDostave>Dunajska cesta 45, 1000 Ljubljana</naslovDostave>
+        <opomba>Promocijsko gradivo</opomba>
+        <placilniNacin>Kartica</placilniNacin>
+        <popust>4.8</popust>
+        <davek>21.0</davek>
+    </narocilo>
+    <narocilo id="NAR012">
+        <strankaId>STR004</strankaId>
+        <artikelId>ART010</artikelId>
+        <dobaviteljId>DOB004</dobaviteljId>
+        <datumNarocila>2024-09-15</datumNarocila>
+        <kolicina>2</kolicina>
+        <cenaPoKos>129.99</cenaPoKos>
+        <skupnaCena>259.98</skupnaCena>
+        <status>V obdelavi</status>
+        <datumDostave></datumDostave>
+        <naslovDostave>Slovenska cesta 50, 1000 Ljubljana</naslovDostave>
+        <opomba>Upgrade omrežja</opomba>
+        <placilniNacin>Nakazilo</placilniNacin>
+        <popust>4.8</popust>
+        <davek>21.0</davek>
+    </narocilo>
+</narocila>

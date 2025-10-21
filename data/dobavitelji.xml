@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dobavitelji>
+    <dobavitelj id="DOB001">
+        <naziv>TechnoWorld d.o.o.</naziv>
+        <naslov>Ljubljanska cesta 15, 1000 Ljubljana</naslov>
+        <telefon>01 234 5678</telefon>
+        <email>info@technoworld.si</email>
+        <kontaktnaOseba>Marko Novak</kontaktnaOseba>
+        <datumSklenitve>2020-03-15</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>5.5</popust>
+        <kategorije>Računalniki,Periferija</kategorije>
+        <ocena>4.8</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI12345678</davcnaStevilka>
+        <placilniPogoji>30 dni</placilniPogoji>
+        <opomba></opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB002">
+        <naziv>Digital Solutions s.p.</naziv>
+        <naslov>Cankarjeva ulica 8, 2000 Maribor</naslov>
+        <telefon>02 987 6543</telefon>
+        <email>prodaja@digital-sol.si</email>
+        <kontaktnaOseba>Ana Kovač</kontaktnaOseba>
+        <datumSklenitve>2019-11-22</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>7.0</popust>
+        <kategorije>Periferija,Shranjevanje</kategorije>
+        <ocena>4.6</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI87654321</davcnaStevilka>
+        <placilniPogoji>14 dni</placilniPogoji>
+        <opomba>Hitra dostava</opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB003">
+        <naziv>ProHardware Ltd.</naziv>
+        <naslov>Celovška cesta 32, 1000 Ljubljana</naslov>
+        <telefon>01 555 1234</telefon>
+        <email>orders@prohw.si</email>
+        <kontaktnaOseba>Peter Krajnc</kontaktnaOseba>
+        <datumSklenitve>2021-07-10</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>3.2</popust>
+        <kategorije>Monitorji,Tiskalniki,Komponente</kategorije>
+        <ocena>4.9</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI11223344</davcnaStevilka>
+        <placilniPogoji>60 dni</placilniPogoji>
+        <opomba>Specializirani za gaming opremo</opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB004">
+        <naziv>AudioVisual Pro d.d.</naziv>
+        <naslov>Titova cesta 44, 3000 Celje</naslov>
+        <telefon>03 444 7777</telefon>
+        <email>info@av-pro.si</email>
+        <kontaktnaOseba>Maja Zorko</kontaktnaOseba>
+        <datumSklenitve>2022-01-05</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>4.8</popust>
+        <kategorije>Avdio,Omrežje</kategorije>
+        <ocena>4.7</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI99887766</davcnaStevilka>
+        <placilniPogoji>45 dni</placilniPogoji>
+        <opomba>Ekskluzivni uvoznik Bose</opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB005">
+        <naziv>Eurotehnologija d.o.o.</naziv>
+        <naslov>Šmartinska cesta 130, 1000 Ljubljana</naslov>
+        <telefon>01 666 8899</telefon>
+        <email>support@eurotech.si</email>
+        <kontaktnaOseba>Janez Novak</kontaktnaOseba>
+        <datumSklenitve>2018-05-12</datumSklenitve>
+        <aktivn>false</aktivn>
+        <popust>2.1</popust>
+        <kategorije>Računalniki</kategorije>
+        <ocena>3.8</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI55443322</davcnaStevilka>
+        <placilniPogoji>21 dni</placilniPogoji>
+        <opomba>Trenutno ne sodelujemo</opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB006">
+        <naziv>MegaStore International</naziv>
+        <naslov>Dunajska cesta 100, 1000 Ljubljana</naslov>
+        <telefon>01 777 2233</telefon>
+        <email>sales@megastore.eu</email>
+        <kontaktnaOseba>Robert Smith</kontaktnaOseba>
+        <datumSklenitve>2023-03-18</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>6.5</popust>
+        <kategorije>Komponente,Računalniki</kategorije>
+        <ocena>4.4</ocena>
+        <drzava>Avstrija</drzava>
+        <davcnaStevilka>AT12345678901</davcnaStevilka>
+        <placilniPogoji>30 dni</placilniPogoji>
+        <opomba></opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB007">
+        <naziv>QuickTech Solutions</naziv>
+        <naslov>Trubarjeva cesta 25, 1000 Ljubljana</naslov>
+        <telefon>01 888 4455</telefon>
+        <email>info@quicktech.si</email>
+        <kontaktnaOseba>Tina Oblak</kontaktnaOseba>
+        <datumSklenitve>2022-09-14</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>8.2</popust>
+        <kategorije>Periferija,Avdio</kategorije>
+        <ocena>4.5</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI77889900</davcnaStevilka>
+        <placilniPogoji>15 dni</placilniPogoji>
+        <opomba>Novi partner</opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB008">
+        <naziv>GlobalIT Distribution</naziv>
+        <naslov>Zagrebška cesta 22, 1000 Ljubljana</naslov>
+        <telefon>01 999 5566</telefon>
+        <email>orders@globalit.hr</email>
+        <kontaktnaOseba>Milan Horvat</kontaktnaOseba>
+        <datumSklenitve>2021-12-03</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>5.0</popust>
+        <kategorije>Shranjevanje,Omrežje</kategorije>
+        <ocena>4.2</ocena>
+        <drzava>Hrvaška</drzava>
+        <davcnaStevilka>HR12345678901</davcnaStevilka>
+        <placilniPogoji>30 dni</placilniPogoji>
+        <opomba>Velik izbor</opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB009">
+        <naziv>TechSupply Express</naziv>
+        <naslov>Koroška cesta 55, 4000 Kranj</naslov>
+        <telefon>04 234 5678</telefon>
+        <email>info@techsupply.si</email>
+        <kontaktnaOseba>Miha Kranjc</kontaktnaOseba>
+        <datumSklenitve>2020-08-25</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>4.5</popust>
+        <kategorije>Tiskalniki,Monitorji</kategorije>
+        <ocena>4.3</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI33445566</davcnaStevilka>
+        <placilniPogoji>45 dni</placilniPogoji>
+        <opomba></opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB010">
+        <naziv>FastDelivery Tech</naziv>
+        <naslov>Prešernova cesta 18, 8000 Novo mesto</naslov>
+        <telefon>07 345 6789</telefon>
+        <email>fast@delivery-tech.si</email>
+        <kontaktnaOseba>Sara Božič</kontaktnaOseba>
+        <datumSklenitve>2023-06-11</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>3.8</popust>
+        <kategorije>Računalniki,Komponente</kategorije>
+        <ocena>4.0</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI66778899</davcnaStevilka>
+        <placilniPogoji>21 dni</placilniPogoji>
+        <opomba>24h dostava</opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB011">
+        <naziv>Premium Components Ltd</naziv>
+        <naslov>Gosposvetska cesta 84, 2000 Maribor</naslov>
+        <telefon>02 567 8901</telefon>
+        <email>premium@components.si</email>
+        <kontaktnaOseba>Luka Vidmar</kontaktnaOseba>
+        <datumSklenitve>2019-04-07</datumSklenitve>
+        <aktivn>false</aktivn>
+        <popust>1.5</popust>
+        <kategorije>Komponente</kategorije>
+        <ocena>3.9</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI00112233</davcnaStevilka>
+        <placilniPogoji>90 dni</placilniPogoji>
+        <opomba>Začasno neaktiven</opomba>
+    </dobavitelj>
+    <dobavitelj id="DOB012">
+        <naziv>Network Solutions Pro</naziv>
+        <naslov>Vegova ulica 10, 1000 Ljubljana</naslov>
+        <telefon>01 123 7890</telefon>
+        <email>network@solutions.si</email>
+        <kontaktnaOseba>David Kos</kontaktnaOseba>
+        <datumSklenitve>2022-11-28</datumSklenitve>
+        <aktivn>true</aktivn>
+        <popust>6.8</popust>
+        <kategorije>Omrežje,Periferija</kategorije>
+        <ocena>4.6</ocena>
+        <drzava>Slovenija</drzava>
+        <davcnaStevilka>SI44556677</davcnaStevilka>
+        <placilniPogoji>30 dni</placilniPogoji>
+        <opomba>Omrežni specialisti</opomba>
+    </dobavitelj>
+</dobavitelji>

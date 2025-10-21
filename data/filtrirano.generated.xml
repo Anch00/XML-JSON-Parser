@@ -1,0 +1,242 @@
+<filteredResults>
+  <item>
+    <id>ART001</id>
+    <naziv>Prenosnik Lenovo ThinkPad</naziv>
+    <cena>899.99</cena>
+    <zaloga>12</zaloga>
+    <dobaviteljId>DOB001</dobaviteljId>
+    <dobavitelj>
+      <id>DOB001</id>
+      <naziv>TechnoWorld d.o.o.</naziv>
+    </dobavitelj>
+    <kategorija>Računalniki</kategorija>
+    <datumDodajanja>2024-01-15</datumDodajanja>
+    <opis>Poslovni prenosnik z Intel procesorjem</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-10-01</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART002</id>
+    <naziv>Miška Logitech MX</naziv>
+    <cena>79.99</cena>
+    <zaloga>3</zaloga>
+    <dobaviteljId>DOB002</dobaviteljId>
+    <dobavitelj>
+      <id>DOB002</id>
+      <naziv>Digital Solutions s.p.</naziv>
+    </dobavitelj>
+    <kategorija>Periferija</kategorija>
+    <datumDodajanja>2024-02-10</datumDodajanja>
+    <opis>Brezžična miška za profesionalce</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-09-15</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART003</id>
+    <naziv>Tipkovnica Mechanical RGB</naziv>
+    <cena>149.5</cena>
+    <zaloga>8</zaloga>
+    <dobaviteljId>DOB001</dobaviteljId>
+    <dobavitelj>
+      <id>DOB001</id>
+      <naziv>TechnoWorld d.o.o.</naziv>
+    </dobavitelj>
+    <kategorija>Periferija</kategorija>
+    <datumDodajanja>2024-03-05</datumDodajanja>
+    <opis>Mehanska tipkovnica z RGB osvetlitvijo</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave></datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART004</id>
+    <naziv>Monitor 27&quot; 4K</naziv>
+    <cena>320</cena>
+    <zaloga>2</zaloga>
+    <dobaviteljId>DOB003</dobaviteljId>
+    <dobavitelj>
+      <id>DOB003</id>
+      <naziv>ProHardware Ltd.</naziv>
+    </dobavitelj>
+    <kategorija>Monitorji</kategorija>
+    <datumDodajanja>2024-01-20</datumDodajanja>
+    <opis>Ultra HD monitor za grafične delove</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-08-22</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART005</id>
+    <naziv>USB Ključek 64GB</naziv>
+    <cena>15.99</cena>
+    <zaloga>25</zaloga>
+    <dobaviteljId>DOB002</dobaviteljId>
+    <dobavitelj>
+      <id>DOB002</id>
+      <naziv>Digital Solutions s.p.</naziv>
+    </dobavitelj>
+    <kategorija>Shranjevanje</kategorija>
+    <datumDodajanja>2024-04-12</datumDodajanja>
+    <opis>Hitrostni USB 3.0 ključek</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-10-10</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART006</id>
+    <naziv>Slušalke Bose QuietComfort</naziv>
+    <cena>299.99</cena>
+    <zaloga>1</zaloga>
+    <dobaviteljId>DOB004</dobaviteljId>
+    <dobavitelj>
+      <id>DOB004</id>
+      <naziv>AudioVisual Pro d.d.</naziv>
+    </dobavitelj>
+    <kategorija>Avdio</kategorija>
+    <datumDodajanja>2024-05-18</datumDodajanja>
+    <opis>Slušalke z aktivnim dušenjem hrupa</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-09-30</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART007</id>
+    <naziv>Webcam HD 1080p</naziv>
+    <cena>89.9</cena>
+    <zaloga>15</zaloga>
+    <dobaviteljId>DOB001</dobaviteljId>
+    <dobavitelj>
+      <id>DOB001</id>
+      <naziv>TechnoWorld d.o.o.</naziv>
+    </dobavitelj>
+    <kategorija>Periferija</kategorija>
+    <datumDodajanja>2024-06-01</datumDodajanja>
+    <opis>HD spletna kamera za videokonference</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-10-05</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART008</id>
+    <naziv>Tiskalnik HP LaserJet</naziv>
+    <cena>180</cena>
+    <zaloga>6</zaloga>
+    <dobaviteljId>DOB003</dobaviteljId>
+    <dobavitelj>
+      <id>DOB003</id>
+      <naziv>ProHardware Ltd.</naziv>
+    </dobavitelj>
+    <kategorija>Tiskalniki</kategorija>
+    <datumDodajanja>2024-02-28</datumDodajanja>
+    <opis>Laserski črno-beli tiskalnik</opis>
+    <aktivn>false</aktivn>
+    <datumZadnjeNabave>2024-07-12</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART009</id>
+    <naziv>Zunanji disk 2TB</naziv>
+    <cena>99.99</cena>
+    <zaloga>10</zaloga>
+    <dobaviteljId>DOB002</dobaviteljId>
+    <dobavitelj>
+      <id>DOB002</id>
+      <naziv>Digital Solutions s.p.</naziv>
+    </dobavitelj>
+    <kategorija>Shranjevanje</kategorija>
+    <datumDodajanja>2024-07-10</datumDodajanja>
+    <opis>Zunanji trdi disk USB 3.0</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-09-18</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART010</id>
+    <naziv>Router WiFi 6</naziv>
+    <cena>129.99</cena>
+    <zaloga>4</zaloga>
+    <dobaviteljId>DOB004</dobaviteljId>
+    <dobavitelj>
+      <id>DOB004</id>
+      <naziv>AudioVisual Pro d.d.</naziv>
+    </dobavitelj>
+    <kategorija>Omrežje</kategorija>
+    <datumDodajanja>2024-08-15</datumDodajanja>
+    <opis>Brezhični router z WiFi 6 standardom</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave></datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART011</id>
+    <naziv>Gaming miška RGB</naziv>
+    <cena>59.99</cena>
+    <zaloga>0</zaloga>
+    <dobaviteljId>DOB001</dobaviteljId>
+    <dobavitelj>
+      <id>DOB001</id>
+      <naziv>TechnoWorld d.o.o.</naziv>
+    </dobavitelj>
+    <kategorija>Periferija</kategorija>
+    <datumDodajanja>2024-09-01</datumDodajanja>
+    <opis>Gaming miška z RGB svetlobami</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-08-05</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART012</id>
+    <naziv>Mikrofon Studio USB</naziv>
+    <cena>199</cena>
+    <zaloga>7</zaloga>
+    <dobaviteljId>DOB004</dobaviteljId>
+    <dobavitelj>
+      <id>DOB004</id>
+      <naziv>AudioVisual Pro d.d.</naziv>
+    </dobavitelj>
+    <kategorija>Avdio</kategorija>
+    <datumDodajanja>2024-03-22</datumDodajanja>
+    <opis></opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-10-12</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART013</id>
+    <naziv>Grafična kartica RTX</naziv>
+    <cena>649.99</cena>
+    <zaloga>2</zaloga>
+    <dobaviteljId>DOB003</dobaviteljId>
+    <dobavitelj>
+      <id>DOB003</id>
+      <naziv>ProHardware Ltd.</naziv>
+    </dobavitelj>
+    <kategorija>Komponente</kategorija>
+    <datumDodajanja>2024-05-30</datumDodajanja>
+    <opis>Visokoproduktivna grafična kartica</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-09-25</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART014</id>
+    <naziv>SSD disk 1TB</naziv>
+    <cena>120</cena>
+    <zaloga>18</zaloga>
+    <dobaviteljId>DOB002</dobaviteljId>
+    <dobavitelj>
+      <id>DOB002</id>
+      <naziv>Digital Solutions s.p.</naziv>
+    </dobavitelj>
+    <kategorija>Shranjevanje</kategorija>
+    <datumDodajanja>2024-06-15</datumDodajanja>
+    <opis>Hiter SSD disk za sisteme</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave>2024-10-08</datumZadnjeNabave>
+  </item>
+  <item>
+    <id>ART015</id>
+    <naziv>Bluetooth zvočnik</naziv>
+    <cena>45.5</cena>
+    <zaloga>12</zaloga>
+    <dobaviteljId>DOB004</dobaviteljId>
+    <dobavitelj>
+      <id>DOB004</id>
+      <naziv>AudioVisual Pro d.d.</naziv>
+    </dobavitelj>
+    <kategorija>Avdio</kategorija>
+    <datumDodajanja>2024-04-28</datumDodajanja>
+    <opis>Prenosni Bluetooth zvočnik</opis>
+    <aktivn>true</aktivn>
+    <datumZadnjeNabave></datumZadnjeNabave>
+  </item>
+</filteredResults>
