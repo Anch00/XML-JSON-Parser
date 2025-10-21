@@ -133,16 +133,54 @@ git clone https://github.com/Anch00/XML-JSON-Parser.git
 cd xml_parser
 ```
 
-2️⃣ Namesti odvisnosti
+2️⃣ Backend (opcijsko) - namestitev in zagon
+
+Če želite uporabiti tudi strežnik (npr. za server-side upload ali export), namestite in zaženite backend:
+
+```cmd
+cd backend
+npm install
+npm start
+```
+
+Namigi za backend:
+
+- Privzeti port: backend privzeto posluša na portu **3000**. Če želite zagnati na drugem portu v cmd.exe:
+
+```cmd
+set PORT=4000
+npm start
+```
+
+- Samodejni restart: za razvoj lahko uporabite `nodemon` (globalno ali kot dev-dependency):
+
+```cmd
+npm install -g nodemon
+nodemon index.js
+```
+
+- Uploads: strežnik uporablja mapo `backend/uploads/` za začasno shranjevanje naloženih datotek. Poskrbite, da mapa obstaja in ima zapisovalne pravice.
+
+- Primeri API endpointov (če strežnik deluje):
+
+  - `POST /api/upload` — sprejme multipart upload XML datotek
+  - `POST /api/join` — prejme dokumente in mapping, vrne združene rezultate kot JSON
+  - `POST /api/filter` — uporabi filtre na združenih rezultatih
+  - `GET /api/export/json` — prenese zadnje filtrirane rezultate v JSON
+  - `GET /api/export/xml` — prenese zadnje filtrirane rezultate v saniranem XML formatu
+
+- Če naletite na napako `EADDRINUSE`, preverite kateri proces uporablja port in ga ustavite ali uporabite drug port. Na Windows cmd:
+
+```cmd
+netstat -ano | findstr :3000
+taskkill /PID <pid> /F
+```
+
+3️⃣ Frontend - namestitev in zagon
 
 ```bash
 cd frontend
 npm install
-```
-
-3️⃣ Zaženi razvojni strežnik
-
-```bash
 npm run dev
 ```
 
