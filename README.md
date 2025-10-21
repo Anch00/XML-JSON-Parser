@@ -1,39 +1,5 @@
 # 🧩 XML Parser & Analyzer
 
-Pametna React + TypeScript aplikacija za **analizo, povezovanje in filtriranje XML podatkov** — direktno v brskalniku.  
-💡 Naloži svoje XML datoteke, poveži podatke, uporabi napredne filtre in izvozi rezultate v JSON ali XML.
-
----
-
-## 🚀 Ključne Funkcionalnosti
-
-### 🗂️ Pametno delo z XML datotekami
-
-- Podpora za **več datotek hkrati** (artikli, naročila, stranke, …)
-- Samodejno **prepoznavanje struktur** in **povezovanje prek ID-jev**
-- Brez strežnika – vse se izvaja **lokalno v brskalniku**
-
-### 🔍 Napredno filtriranje
-
-- Podpira **številčne, besedilne, datum in boolean** filtre
-- Operacije: `vsebuje`, `=`, `>`, `<`, `≥`, `≤`
-- Možnost kombiniranja več filtrov
-- Instantno prikazovanje rezultatov
-
-### 🔗 Povezovanje podatkov
-
-- Denormalizacija XML struktur za lažjo analizo
-- Samodejno povezovanje entitet na podlagi **unikatnih ID-jev**
-- Vizualno urejeni rezultati v tabelah
-
-### 📤 Izvoz podatkov
-
-- Izvoz **filtriranih rezultatov** v:
-  - **JSON (`filtrirano.json`)**
-  - **XML (`filtrirano.xml`)**
-
-# 🧩 XML Parser & Analyzer
-
 Pametna **React + TypeScript** aplikacija za **analizo, povezovanje in filtriranje XML podatkov** — neposredno v brskalniku.
 
 💡 Naloži svoje XML datoteke, aplikacija jih samodejno razbere, poveže po ID-jih, omogoči napredno filtriranje in izvoz v **JSON** ali **XML** format.  
@@ -135,45 +101,12 @@ cd xml_parser
 
 2️⃣ Backend (opcijsko) - namestitev in zagon
 
-Če želite uporabiti tudi strežnik (npr. za server-side upload ali export), namestite in zaženite backend:
+Če želite uporabiti strežnik, naredite naslednje enostavne korake:
 
 ```cmd
 cd backend
-npm install
-npm start
-```
-
-Namigi za backend:
-
-- Privzeti port: backend privzeto posluša na portu **3000**. Če želite zagnati na drugem portu v cmd.exe:
-
-```cmd
-set PORT=4000
-npm start
-```
-
-- Samodejni restart: za razvoj lahko uporabite `nodemon` (globalno ali kot dev-dependency):
-
-```cmd
-npm install -g nodemon
-nodemon index.js
-```
-
-- Uploads: strežnik uporablja mapo `backend/uploads/` za začasno shranjevanje naloženih datotek. Poskrbite, da mapa obstaja in ima zapisovalne pravice.
-
-- Primeri API endpointov (če strežnik deluje):
-
-  - `POST /api/upload` — sprejme multipart upload XML datotek
-  - `POST /api/join` — prejme dokumente in mapping, vrne združene rezultate kot JSON
-  - `POST /api/filter` — uporabi filtre na združenih rezultatih
-  - `GET /api/export/json` — prenese zadnje filtrirane rezultate v JSON
-  - `GET /api/export/xml` — prenese zadnje filtrirane rezultate v saniranem XML formatu
-
-- Če naletite na napako `EADDRINUSE`, preverite kateri proces uporablja port in ga ustavite ali uporabite drug port. Na Windows cmd:
-
-```cmd
-netstat -ano | findstr :3000
-taskkill /PID <pid> /F
+npm i
+node index.js
 ```
 
 3️⃣ Frontend - namestitev in zagon
