@@ -206,6 +206,6 @@ Uporabniku prijazno orodje, ki kombinira moč XML struktur z enostavnostjo sodob
 Jan Ančevski
 Fakulteta za elektrotehniko, računalništvo in informatiko (FERI)
 Predmet: Tehnike in izgradnja digitalnih storitev (TIDS)
-🌐 GitHub: [@Anch00](https://github.com/Anch00/XML-JSON-Parser)
+🌐 GitHub: [@Anch00](https://github.com/Anch00)
 
 ⭐️ Če ti je aplikacija všeč, pusti zvezdico na GitHubu!
