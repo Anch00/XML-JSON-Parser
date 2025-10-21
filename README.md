@@ -1,144 +1,107 @@
-# XML Parser & Analyzer
+# 🧩 XML Parser & Analyzer
 
-Moderna TypeScript React aplikacija za delo z XML dokumenti, povezovanje podatkov in filtriranje rezultatov.
+Pametna React + TypeScript aplikacija za **analizo, povezovanje in filtriranje XML podatkov** — direktno v brskalniku.  
+💡 Naloži svoje XML datoteke, poveži podatke, uporabi napredne filtre in izvozi rezultate v JSON ali XML.
 
-## 🚀 Funkcionalnosti
+---
 
-### ✅ XML Dokumenti
+## 🚀 Ključne Funkcionalnosti
 
-- **4 povezane XML datoteke**: artikli.xml, dobavitelji.xml, narocila.xml, stranke.xml
-- **15+ zapisov** v vsaki datoteki
-- **Unikatni ID atributi** za povezovanje
-- **Datum polja** v formatu YYYY-MM-DD
-- **Različni tipi podatkov**: numerični, besedilni, boolean
-- **Prazne vrednosti** in manjkajoči podatki
+### 🗂️ Pametno delo z XML datotekami
 
-### 🔗 Povezovanje Podatkov
+- Podpora za **več datotek hkrati** (artikli, naročila, stranke, …)
+- Samodejno **prepoznavanje struktur** in **povezovanje prek ID-jev**
+- Brez strežnika – vse se izvaja **lokalno v brskalniku**
 
-- Avtomatsko **povezovanje prek ID-jev**
-- Združevanje podatkov iz različnih XML datotek
-- **Denormalizacija** za lažje filtriranje
+### 🔍 Napredno filtriranje
 
-### 🔍 Filtriranje
+- Podpira **številčne, besedilne, datum in boolean** filtre
+- Operacije: `vsebuje`, `=`, `>`, `<`, `≥`, `≤`
+- Možnost kombiniranja več filtrov
+- Instantno prikazovanje rezultatov
 
-Podprte operacije:
+### 🔗 Povezovanje podatkov
 
-- `vsebuje` - besedilno iskanje
-- `=` - enakost
-- `>` - večje od
-- `<` - manjše od
-- `≥` - večje ali enako
-- `≤` - manjše ali enako
+- Denormalizacija XML struktur za lažjo analizo
+- Samodejno povezovanje entitet na podlagi **unikatnih ID-jev**
+- Vizualno urejeni rezultati v tabelah
 
-**Predlagani filtri:**
+### 📤 Izvoz podatkov
 
-- `zaloga < 5` - artikli z majhno zalogo
-- `kategorija vsebuje "Periferija"` - artikli iz določene kategorije
-- `status = "V obdelavi"` - naročila v obdelavi
-- `drzava = "Slovenija"` - dobavitelji iz Slovenije
-- `aktivn = true` - aktivne entitete
+- Izvoz **filtriranih rezultatov** v:
+  - **JSON (`filtrirano.json`)**
+  - **XML (`filtrirano.xml`)**
 
-### 📤 Izvoz Rezultatov
+# 🧩 XML Parser & Analyzer
 
-- **JSON format**: `filtrirano.json`
-- **XML format**: `filtrirano.xml`
-- Direktno prenašanje v brskalniku
+Pametna **React + TypeScript** aplikacija za **analizo, povezovanje in filtriranje XML podatkov** — neposredno v brskalniku.
 
-## 🛠 Tehnologije
+💡 Naloži svoje XML datoteke, aplikacija jih samodejno razbere, poveže po ID-jih, omogoči napredno filtriranje in izvoz v **JSON** ali **XML** format.  
+Popolno orodje za hitro analizo strukturiranih podatkov brez programiranja in brez backenda.
 
-- **Frontend**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **CSS**: Moderní responsive design
-- **XML Parsing**: Native DOM Parser API
-- **No Backend Required**: Celotna logika v brskalniku
+---
 
-## 📁 Struktura Projekta
+## 🚀 Ključne Funkcionalnosti
 
-```
-xml_parser/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   └── XMLParserComponent.tsx
-│   │   ├── types/
-│   │   │   └── index.ts
-│   │   ├── utils/
-│   │   │   └── xmlParser.ts
-│   │   ├── App.tsx
-│   │   ├── main.tsx
-│   │   └── styles.css
-│   ├── package.json
-│   ├── vite.config.ts
-│   └── tsconfig.json
-└── data/
-    ├── artikli.xml
-    ├── dobavitelji.xml
-    ├── narocila.xml
-    └── stranke.xml
-```
+### 🗂️ Pametno delo z XML datotekami
 
-## 🚀 Namestitev in Zagon
+- Podpora za **več datotek hkrati**
+- Samodejno **prepoznavanje strukture** in povezovanje prek ID atributov
+- Brez strežnika – vse se izvaja **lokalno v brskalniku**
+- Deluje z **vsemi vrstami XML struktur**
 
-### Predpogoji
+### 🔍 Napredno filtriranje
 
-- Node.js 16+
-- npm ali yarn
+- Dinamični filtri po poljubnih poljih
+- Operacije: `vsebuje`, `=`, `>`, `<`, `≥`, `≤`
+- Samodejno prilagajanje tipov (npr. številke, datumi, boolean)
+- Instantni prikaz rezultatov med tipkanjem
 
-### Koraki
+### 🔗 Povezovanje podatkov
 
-1. **Kloniraj projekt**
+- Avtomatska **denormalizacija XML dokumentov**
+- Povezovanje entitet prek unikatnih **ID-jev** (npr. `artikelId`, `strankaId`)
+- Združevanje povezanih podatkov v enoten pregled
 
-   ```bash
-   git clone <repository-url>
-   cd xml_parser
-   ```
+### 📤 Izvoz rezultatov
 
-2. **Namesti odvisnosti**
+- Izvoz **filtriranih rezultatov** v:
+  - 📄 **JSON (`filtrirano.json`)**
+  - 📄 **XML (`filtrirano.xml`)**
+- Prenos datotek direktno iz brskalnika, brez dodatnih orodij
 
-   ```bash
-   cd frontend
-   npm install
-   ```
+### 💡 Dodatno
 
-3. **Zaženi aplikacijo**
+- **Modern UI** (responsive dizajn, jasne tabele, ikone)
+- **Napredna validacija XML** in obravnava napak
+- **Vizualni loading states**
+- Optimizirano za **velike količine podatkov**
+- Deluje v vseh sodobnih brskalnikih
 
-   ```bash
-   npm run dev
-   ```
+---
 
-4. **Odpri v brskalniku**
-   ```
-   http://localhost:5173
-   ```
+## 🧠 Primeri filtrov
 
-## 📖 Navodila za Uporabo
+| Primer filtra                  | Opis                                 |
+| ------------------------------ | ------------------------------------ |
+| `zaloga < 5`                   | Artikli z majhno zalogo              |
+| `status = "V obdelavi"`        | Naročila, ki so še v obdelavi        |
+| `drzava = "Slovenija"`         | Dobavitelji iz Slovenije             |
+| `datumNarocila > "2024-10-01"` | Naročila po določenem datumu         |
+| `kategorija vsebuje "Tech"`    | Artikli v kategoriji z besedo "Tech" |
 
-### 1. Naloži XML Datoteke
+---
 
-- Klikni na "Choose Files" ali povleci datoteke
-- Izberi vse XML datoteke naenkrat (`artikli.xml`, `dobavitelji.xml`, `narocila.xml`, `stranke.xml`)
-- Aplikacija avtomatsko razpozna tip datoteke po imenu
+## 📁 Mock podatki (za testiranje)
 
-### 2. Poveži Podatke
+V mapi [`/data`](./data) so priložene testne datoteke, s katerimi lahko hitro preizkusiš aplikacijo:
 
-- Ko so datoteke naložene, klikni "Poveži Podatke"
-- Aplikacija avtomatsko poveže podatke prek ID-jev
+- `artikli.xml`
+- `dobavitelji.xml`
+- `narocila.xml`
+- `stranke.xml`
 
-### 3. Filtriraj Rezultate
-
-- Izberi polje za filtriranje iz dropdown menija
-- Izberi operacijo (vsebuje, =, >, <, ≥, ≤)
-- Vnesi vrednost za primerjavo
-- Klikni "Uporabi Filtre"
-
-### 4. Izvozi Rezultate
-
-- Klikni "Izvozi JSON" za JSON format
-- Klikni "Izvozi XML" za XML format
-
-## 📊 Struktura XML Datotek
-
-### artikli.xml
+Primer strukture:
 
 ```xml
 <artikel id="ART001">
@@ -146,107 +109,137 @@ xml_parser/
   <cena>899.99</cena>
   <zaloga>12</zaloga>
   <dobaviteljId>DOB001</dobaviteljId>
-  <kategorija>Računalniki</kategorija>
   <datumDodajanja>2024-01-15</datumDodajanja>
   <aktivn>true</aktivn>
-  <!-- ... -->
 </artikel>
 ```
 
-### dobavitelji.xml
+## 🛠️ Tehnologije
 
-```xml
-<dobavitelj id="DOB001">
-  <naziv>TechnoWorld d.o.o.</naziv>
-  <email>info@technoworld.si</email>
-  <datumSklenitve>2020-03-15</datumSklenitve>
-  <aktivn>true</aktivn>
-  <!-- ... -->
-</dobavitelj>
-```
+| Področje      | Uporabljeno orodje / knjižnica      |
+| ------------- | ----------------------------------- |
+| Frontend      | React 18 + TypeScript               |
+| Build Tool    | Vite                                |
+| XML Parsing   | Native DOM Parser API               |
+| CSS Framework | Tailwind CSS (modern responsive UI) |
+| Deployment    | Lokalni razvoj (brez backenda)      |
 
-### narocila.xml
+## ⚙️ Namestitev in zagon
 
-```xml
-<narocilo id="NAR001">
-  <strankaId>STR001</strankaId>
-  <artikelId>ART001</artikelId>
-  <dobaviteljId>DOB001</dobaviteljId>
-  <datumNarocila>2024-10-15</datumNarocila>
-  <status>Poslano</status>
-  <!-- ... -->
-</narocilo>
-```
-
-### stranke.xml
-
-```xml
-<stranka id="STR001">
-  <ime>Marko</ime>
-  <priimek>Novak</priimek>
-  <email>marko.novak@example.com</email>
-  <datumRegistracije>2023-03-15</datumRegistracije>
-  <aktivn>true</aktivn>
-  <!-- ... -->
-</stranka>
-```
-
-## 🎯 Primeri Filtrov
-
-| Filter                            | Opis                    | Rezultat                           |
-| --------------------------------- | ----------------------- | ---------------------------------- |
-| `zaloga < 5`                      | Artikli z majhno zalogo | Artikli kjer je zaloga manjša od 5 |
-| `kategorija vsebuje "Periferija"` | Periferijska oprema     | Miške, tipkovnice, webcam          |
-| `status = "V obdelavi"`           | Naročila v obdelavi     | Neobdelana naročila                |
-| `drzava = "Slovenija"`            | Slovenski dobavitelji   | Lokalni partnerji                  |
-| `skupnaCena > 200`                | Velika naročila         | Naročila nad 200€                  |
-| `datumNarocila > "2024-10-01"`    | Nedavna naročila        | Oktobra 2024 in novejša            |
-
-## 💡 TypeScript Prednosti
-
-- **Type Safety**: Preverjanje tipov med razvojem
-- **IntelliSense**: Avtomatsko dokončanje kode
-- **Refactoring**: Varno preimenovanje
-- **Interface Definitions**: Jasna struktura podatkov
-- **Compile-time Errors**: Zgodnje odkrivanje napak
-
-## 🔧 Razvojni Ukazi
+1️⃣ Kloniraj projekt
 
 ```bash
-# Razvoj
+git clone https://github.com/Anch00/XML-JSON-Parser.git
+cd xml_parser
+```
+
+2️⃣ Namesti odvisnosti
+
+```bash
+cd frontend
+npm install
+```
+
+3️⃣ Zaženi razvojni strežnik
+
+```bash
+npm run dev
+```
+
+4️⃣ Odpri aplikacijo
+
+```text
+http://localhost:5173
+```
+
+## 🧭 Navodila za uporabo
+
+- Klikni "Choose Files" ali povleci XML datoteke v aplikacijo
+
+- Po nalaganju klikni "Poveži podatke"
+
+- Nastavi filter (npr. zaloga < 10 ali datum > 2024-01-01)
+
+- Preglej rezultate v pregledni tabeli
+
+- Izvozi rezultate z gumbi:
+
+- 💾 "Izvozi JSON"
+
+- 💾 "Izvozi XML"
+
+## 🔧 Razvojni ukazi
+
+```bash
+# Zagon aplikacije
 npm run dev
 
-# Gradnja za produkcijo
+# Build za produkcijo
 npm run build
 
-# Predogled produkcije
+# Predogled produkcijske verzije
 npm run preview
 
-# TypeScript preverjanje
+# Preverjanje tipov
 npx tsc --noEmit
 ```
 
-## 📝 Dodatne Funkcionalnosti
+## 🧩 Standardi in smernice razvoja
 
-- **Responsive Design**: Optimizirano za vse naprave
-- **Error Handling**: Jasna sporočila o napakah
-- **Loading States**: Vizualni indikatorji nalaganja
-- **Data Validation**: Preverjanje veljavnosti XML
-- **Performance**: Optimizirano za velike podatke
+- Koda napisana v TypeScript za varnost tipov
+
+- Komponente v skladu s React Hooks principom
+
+- Modularna arhitektura: components, utils, types
+
+- Koda formatirana z Prettier + ESLint
+
+- UI v skladu z Tailwind standardi (mobile-first pristop)
+
+- Polno client-side delovanje – brez zunanjih API-jev
 
 ## 🤝 Prispevanje
 
-1. Fork repository
-2. Ustvari feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit spremembe (`git commit -m 'Add some AmazingFeature'`)
-4. Push v branch (`git push origin feature/AmazingFeature`)
-5. Odpri Pull Request
+Veseli bomo tvojih idej in izboljšav!
+Sledi standardnemu postopku:
+
+- Forkaj projekt
+
+- Ustvari branch: `feature/nova-funkcija`
+
+- Commitaj spremembe:
+
+```bash
+git commit -m "Dodana nova funkcionalnost"
+```
+
+- Pushaj branch:
+
+```bash
+git push origin feature/nova-funkcija
+```
+
+- Odpri Pull Request 🚀
+
+## 🧩 Vizualni vtis aplikacije
+
+- 💻 Moderni dizajn
+- 🪶 Čist uporabniški vmesnik
+- 📊 Pregledne tabele
+- 🎨 Sodobna barvna shema (Tailwind)
+
+Uporabniku prijazno orodje, ki kombinira moč XML struktur z enostavnostjo sodobnih spletnih tehnologij.
 
 ## 📄 Licenca
 
-Ta projekt je licenciran pod MIT licenco.
+Projekt je objavljen pod MIT licenco.
+Lahko uporabljaš, spreminjaš in deliš, dokler ohraniš obvestilo o avtorstvu.
 
 ## 👨‍💻 Avtor
 
-Ustvarjeno za predmet **Tehnike in izgradnja digitalnih storitev (TIDS)**
-FERI - Fakulteta za elektrotehniko, računalništvo in informatiko
+Jan Ančevski
+Fakulteta za elektrotehniko, računalništvo in informatiko (FERI)
+Predmet: Tehnike in izgradnja digitalnih storitev (TIDS)
+🌐 GitHub: @Anch00
+
+⭐️ Če ti je aplikacija všeč, pusti zvezdico na GitHubu!
