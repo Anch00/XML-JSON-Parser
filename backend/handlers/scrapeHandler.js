@@ -4,13 +4,115 @@ const fs = require("fs");
 
 async function scrapeAttractionsPage(url) {
   const browser = await puppeteer.launch({
+    headless: true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
   const page = await browser.newPage();
   await page.setUserAgent(
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
   );
-  await page.goto(url, { waitUntil: "networkidle2", timeout: 30000 });
+  await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
+
+  // Site-specific: Atlas Obscura "things-to-do" pages (e.g., Berlin)
+  if (/atlasobscura\.com\/things-to-do\//i.test(url)) {
+    try {
+      // Try to load more results a few times if a Load More button exists
+      for (let i = 0; i < 5; i++) {
+        const hadMore = await page.evaluate(() => {
+          const btns = Array.from(document.querySelectorAll("button, a"));
+          const load = btns.find((b) => {
+            const t = (b.textContent || "").toLowerCase();
+            const id = (b.id || "").toLowerCase();
+            const aria = (b.getAttribute("aria-label") || "").toLowerCase();
+            const dataTestId = (
+              b.getAttribute("data-testid") || ""
+            ).toLowerCase();
+            return (
+              t.includes("load more") ||
+              t.includes("show more") ||
+              id.includes("load") ||
+              aria.includes("load more") ||
+              dataTestId.includes("load-more")
+            );
+          });
+          if (load) {
+            load.click();
+            return true;
+          }
+          return false;
+        });
+        if (!hadMore) break;
+        await page.waitForTimeout(1500 + i * 250);
+      }
+
+      const aoItems = await page.evaluate(() => {
+        const out = [];
+        const seen = new Set();
+
+        // Primary selector based on observed classes
+        const titleSpans = Array.from(
+          document.querySelectorAll(
+            "h4.text-xl.font-semibold.leading-5.tracking-wider span"
+          )
+        );
+        for (const s of titleSpans) {
+          const name = (s.textContent || "").trim();
+          if (!name || name.length < 2 || seen.has(name)) continue;
+          out.push({ name, description: "" });
+          seen.add(name);
+          if (out.length >= 300) break;
+        }
+
+        // Fallback: filter by classList if classes are space/newline separated or changed order
+        if (out.length === 0) {
+          const spans = Array.from(document.querySelectorAll("h4 span"));
+          for (const s of spans) {
+            const parent = s.closest("h4");
+            const cls = (parent && (parent.getAttribute("class") || "")).split(
+              /\s+/
+            );
+            const needed = [
+              "text-xl",
+              "font-semibold",
+              "leading-5",
+              "tracking-wider",
+            ];
+            const ok = needed.every((c) => cls.includes(c));
+            if (!ok) continue;
+            const name = (s.textContent || "").trim();
+            if (name && !seen.has(name)) {
+              out.push({ name, description: "" });
+              seen.add(name);
+              if (out.length >= 300) break;
+            }
+          }
+        }
+
+        // Last-resort: generic cards
+        if (out.length === 0) {
+          const cards = Array.from(
+            document.querySelectorAll('[class*="card"], article, li')
+          );
+          for (const c of cards) {
+            const h = c.querySelector("h3 span, h4 span, h3, h4");
+            if (!h) continue;
+            const name = (h.textContent || "").trim();
+            if (name && name.length > 2 && !seen.has(name)) {
+              out.push({ name, description: "" });
+              seen.add(name);
+              if (out.length >= 300) break;
+            }
+          }
+        }
+        return out;
+      });
+
+      await browser.close();
+      return aoItems;
+    } catch (e) {
+      // fall back to generic
+    }
+  }
 
   const items = await page.evaluate(() => {
     const results = [];
@@ -58,7 +160,7 @@ async function scrapeAttractionsPage(url) {
 
 async function handleScrape(req, res) {
   const url =
-    req.query.url || "https://www.visitljubljana.si/en/visitors/what-to-see/";
+    req.query.url || "https://www.atlasobscura.com/things-to-do/berlin-germany";
   try {
     const attractions = await scrapeAttractionsPage(url);
     const dataPath = path.join(__dirname, "..", "..", "data");
