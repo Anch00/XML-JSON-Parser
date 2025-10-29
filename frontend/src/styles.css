@@ -206,6 +206,37 @@ input[type="file"]:hover {
   color: #dc2626;
 }
 
+/* Attractions list and link styling */
+.attraction-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 16px;
+}
+
+.attraction-item {
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+a.attraction-link:link,
+a.attraction-link:visited {
+  color: #0ea5e9; /* consistent color for visited/non-visited */
+  text-decoration: none;
+}
+
+a.attraction-link:hover {
+  color: #0284c7;
+  text-decoration: underline;
+}
+
+a.attraction-link:active {
+  color: #0369a1;
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .container {

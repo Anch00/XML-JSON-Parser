@@ -58,7 +58,20 @@ async function scrapeAttractionsPage(url) {
         for (const s of titleSpans) {
           const name = (s.textContent || "").trim();
           if (!name || name.length < 2 || seen.has(name)) continue;
-          out.push({ name, description: "" });
+          const container = s.closest("article, li, div") || s.parentElement;
+          let a =
+            (container &&
+              container.querySelector(
+                'a[href*="/places/"], a[href*="/things-to-do/"]'
+              )) ||
+            s.closest("a");
+          let href = a && a.getAttribute("href");
+          if (href && !/^https?:/i.test(href)) {
+            try {
+              href = new URL(href, location.origin).href;
+            } catch {}
+          }
+          out.push({ name, description: "", url: href || "" });
           seen.add(name);
           if (out.length >= 300) break;
         }
@@ -81,7 +94,21 @@ async function scrapeAttractionsPage(url) {
             if (!ok) continue;
             const name = (s.textContent || "").trim();
             if (name && !seen.has(name)) {
-              out.push({ name, description: "" });
+              const container =
+                s.closest("article, li, div") || s.parentElement;
+              let a =
+                (container &&
+                  container.querySelector(
+                    'a[href*="/places/"], a[href*="/things-to-do/"]'
+                  )) ||
+                s.closest("a");
+              let href = a && a.getAttribute("href");
+              if (href && !/^https?:/i.test(href)) {
+                try {
+                  href = new URL(href, location.origin).href;
+                } catch {}
+              }
+              out.push({ name, description: "", url: href || "" });
               seen.add(name);
               if (out.length >= 300) break;
             }
@@ -98,7 +125,16 @@ async function scrapeAttractionsPage(url) {
             if (!h) continue;
             const name = (h.textContent || "").trim();
             if (name && name.length > 2 && !seen.has(name)) {
-              out.push({ name, description: "" });
+              const a = c.querySelector(
+                'a[href*="/places/"], a[href*="/things-to-do/"]'
+              );
+              let href = a && a.getAttribute("href");
+              if (href && !/^https?:/i.test(href)) {
+                try {
+                  href = new URL(href, location.origin).href;
+                } catch {}
+              }
+              out.push({ name, description: "", url: href || "" });
               seen.add(name);
               if (out.length >= 300) break;
             }
@@ -138,7 +174,16 @@ async function scrapeAttractionsPage(url) {
         p = p.nextElementSibling;
         steps++;
       }
-      results.push({ name, description });
+      const container = el.closest("article, li, div") || el.parentElement;
+      const a =
+        container && container.querySelector('a[href^="http"], a[href^="/"]');
+      let href = a && a.getAttribute("href");
+      if (href && !/^https?:/i.test(href)) {
+        try {
+          href = new URL(href, location.origin).href;
+        } catch {}
+      }
+      results.push({ name, description, url: href || "" });
       if (results.length >= 50) break;
     }
     if (results.length === 0) {
@@ -146,7 +191,13 @@ async function scrapeAttractionsPage(url) {
       for (const a of anchors) {
         const txt = a.textContent?.trim();
         if (txt && txt.length > 8 && txt.length < 80) {
-          results.push({ name: txt, description: "" });
+          let href = a.getAttribute("href");
+          if (href && !/^https?:/i.test(href)) {
+            try {
+              href = new URL(href, location.origin).href;
+            } catch {}
+          }
+          results.push({ name: txt, description: "", url: href || "" });
           if (results.length >= 50) break;
         }
       }
@@ -159,8 +210,15 @@ async function scrapeAttractionsPage(url) {
 }
 
 async function handleScrape(req, res) {
-  const url =
-    req.query.url || "https://www.atlasobscura.com/things-to-do/berlin-germany";
+  let url = req.query.url;
+  const citySlug = (req.query.citySlug || "").toString().trim();
+  if (!url) {
+    url = citySlug
+      ? `https://www.atlasobscura.com/things-to-do/${encodeURIComponent(
+          citySlug
+        )}`
+      : "https://www.atlasobscura.com/things-to-do/berlin-germany";
+  }
   try {
     const attractions = await scrapeAttractionsPage(url);
     const dataPath = path.join(__dirname, "..", "..", "data");
@@ -174,4 +232,27 @@ async function handleScrape(req, res) {
   }
 }
 
-module.exports = { handleScrape };
+// Curated list of supported Atlas Obscura city slugs (sample of ~15)
+const SUPPORTED_CITIES = [
+  { name: "Berlin, Germany", slug: "berlin-germany" },
+  { name: "Paris, France", slug: "paris-france" },
+  { name: "London, England", slug: "london-england" },
+  { name: "Rome, Italy", slug: "rome-italy" },
+  { name: "Madrid, Spain", slug: "madrid-spain" },
+  { name: "Barcelona, Spain", slug: "barcelona-spain" },
+  { name: "Amsterdam, Netherlands", slug: "amsterdam-netherlands" },
+  { name: "Vienna, Austria", slug: "vienna-austria" },
+  { name: "Prague, Czech Republic", slug: "prague-czech-republic" },
+  { name: "Budapest, Hungary", slug: "budapest-hungary" },
+  { name: "Lisbon, Portugal", slug: "lisbon-portugal" },
+  { name: "Athens, Greece", slug: "athens-greece" },
+  { name: "Istanbul, Turkey", slug: "istanbul-turkey" },
+  { name: "Tokyo, Japan", slug: "tokyo-japan" },
+  { name: "New York, New York", slug: "new-york-new-york" },
+];
+
+function handleCities(req, res) {
+  res.json({ ok: true, cities: SUPPORTED_CITIES });
+}
+
+module.exports = { handleScrape, handleCities };
