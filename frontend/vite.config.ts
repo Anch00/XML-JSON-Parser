@@ -7,5 +7,13 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
+    // Proxy API requests to backend (avoid Vite serving index.html for /api/*)
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });

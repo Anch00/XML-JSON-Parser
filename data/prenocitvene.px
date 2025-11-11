@@ -1,0 +1,439 @@
+CHARSET="ANSI";
+AXIS-VERSION="2013";
+CODEPAGE="windows-1250";
+LANGUAGE="sl";
+LANGUAGES="sl","en";
+CREATION-DATE="20210308 10:30";
+DECIMALS=0;
+MATRIX="2164531S";
+SUBJECT-CODE="155";
+SUBJECT-AREA="Turizem - Tourism";
+SUBJECT-AREA[en]="Tourism";
+COPYRIGHT=YES;
+DESCRIPTION="Preno�itvene zmogljivosti po nastanitvenih obratih, turisti�ne makro destinacije, Slovenija, letno";
+DESCRIPTION[en]="Accommodation establishments capacity by tourist accommodation establishments, tourist macro destinations, Slovenia, annually";
+TITLE="Preno�itvene zmogljivosti po: LETO, TURISTI�NA MAKRO DESTINACIJA, NASTANITVENI OBRAT, MERITVE";
+TITLE[en]="Accommodation establishments capacity by YEAR, TOURIST MACRO DESTINATION, TOURIST ACCOMMODATION ESTABLISHMENT and MEASURES";
+CONTENTS="Preno�itvene zmogljivosti";
+CONTENTS[en]="Accommodation establishments capacity";
+UNITS="�tevilo";
+UNITS[en]="Number";
+STUB="LETO","TURISTI�NA MAKRO DESTINACIJA","NASTANITVENI OBRAT";
+STUB[en]="YEAR","TOURIST MACRO DESTINATION","TOURIST ACCOMMODATION ESTABLISHMENT";
+HEADING="MERITVE";
+HEADING[en]="MEASURES";
+VALUES("LETO")="2020","2021","2022","2023","2024";
+VALUES[en]("YEAR")="2020","2021","2022","2023","2024";
+VALUES("TURISTI�NA MAKRO DESTINACIJA")="SLOVENIJA","Alpska Slovenija",
+"Ljubljana & Osrednja Slovenija","Mediteranska & Kra�ka Slovenija","Termalna Panonska Slovenija";
+VALUES[en]("TOURIST MACRO DESTINATION")="SLOVENIA","Alpine Slovenia","Ljubljana & Central Slovenia",
+"Mediterranean & Karst Slovenia","Thermal Pannonian Slovenia";
+VALUES("NASTANITVENI OBRAT")="0 Nastanitveni obrat - SKUPAJ",
+"1 Hoteli in podobni nastanitveni obrati","1.1 Hoteli","1.2 Moteli","1.3 Penzioni","1.4 Gosti��a",
+"1.5 Preno�i��a","2 Kampi","2.1 Kampi","3 Drugi nastanitveni obrati","3.1 Apartmajska naselja",
+"3.2 Mladinski hoteli","3.3 Turisti�ne kmetije z nastanitvijo","3.4 Zasebne sobe, apartmaji, hi�e",
+"3.5 Planinski domovi in ko�e","3.6 Po�itni�ki domovi","3.7 Drugi nastanitveni obrati",
+"3.8 Za�asne nastanitvene zmogljivosti in marine";
+VALUES[en]("TOURIST ACCOMMODATION ESTABLISHMENT")="0 Tourist accommodation establishment - TOTAL",
+"1 Hotels and similar accommodation establishments","1.1 Hotels","1.2 Motels","1.3 Boarding houses",
+"1.4 Inns","1.5 Overnight accommodations","2 Camping sites","2.1 Camping sites",
+"3 Other accommodation establishments","3.1 Apartment settlements","3.2 Youth hostels",
+"3.3 Tourist farms with accommodation","3.4 Private accommodations - rented rooms, dwellings",
+"3.5 Mountain huts","3.6 Vacation establishments","3.7 Other accommodation establishments",
+"3.8 Temporary accommodation establishments and marinas";
+VALUES("MERITVE")="�tevilo nedeljivih enot","�tevilo le�i�� - SKUPAJ","�tevilo le�i�� - stalna";
+VALUES[en]("MEASURES")="Number of indivisible units","Bedplaces - TOTAL","Bedplaces - permanent";
+TIMEVAL("LETO")=TLIST(A1),"2020","2021","2022","2023","2024";
+TIMEVAL[en]("YEAR")=TLIST(A1),"2020","2021","2022","2023","2024";
+CODES("LETO")="2020","2021","2022","2023","2024";
+CODES[en]("YEAR")="2020","2021","2022","2023","2024";
+CODES("TURISTI�NA MAKRO DESTINACIJA")="0","1","2","3","4";
+CODES[en]("TOURIST MACRO DESTINATION")="0","1","2","3","4";
+CODES("NASTANITVENI OBRAT")="0","1","11","12","13","14","32","2","21","3","39","34","33","35","36",
+"37","38","41";
+CODES[en]("TOURIST ACCOMMODATION ESTABLISHMENT")="0","1","11","12","13","14","32","2","21","3","39",
+"34","33","35","36","37","38","41";
+CODES("MERITVE")="3","4","5";
+CODES[en]("MEASURES")="3","4","5";
+LAST-UPDATED="20250318 10:30";
+CONTACT="Statisti�ni urad RS, T: (01) 241 64 04, E: gp.surs@gov.si";
+CONTACT[en]="Statistical Office of the Republic of Slovenia, T: +386 1 241 64 04, E: gp.surs@gov.si";
+DATABASE="SI-STAT";
+DATABASE[en]="SI-STAT";
+SOURCE="Statisti�ni urad Republike Slovenije";
+SOURCE[en]="Statistical Office of the Republic of Slovenia";
+NOTE="Povezane vsebine:#- <A class=seznam HREF=http://www.stat.si/StatWeb/Common/PrikaziDokument.ashx?IdDatoteke=7779 target=_blank>Metodolo�ka pojasnila</A>";
+NOTE[en]="Linked content:#- <A class=seznam HREF= http://www.stat.si/StatWeb/Common/PrikaziDokument.ashx?IdDatoteke=8347 target=_blank>Methodological explanations</A>";
+NOTE("TURISTI�NA MAKRO DESTINACIJA")="Avtorica raz�lenitve Slovenije na �tiri �turisti�ne makro destinacije� je Slovenska turisti�na organizacija (STO), prav tako njihovih imen in tudi oblike zapisa, zato jih v tabelah v podatkovni bazi SiStat ohranjamo v "
+"nespremenjeni podobi. Natan�na razvrstitev slovenskih ob�in v �tiri take enote je prikazana na spletnih straneh Statisti�nega urada RS (Klasje � Klasifikacija: <A class=seznam HREF= https://www.stat.si/Klasje/Klasje/Details/12489 TARGET=_blank>eTUR_"
+"Makrodest � �ifrant �turisti�nih makro destinacij� za nastanitveno statistiko</A>).##";
+NOTE[en]("TOURIST MACRO DESTINATION")="The author of the territorial breakdown of Slovenia into four �tourist macro destinations� is the Slovenian Tourist Board (STB). The STB is also the author of their names, so in SiStat Database tables we keep their "
+"names unchanged. Detailed classification of Slovenian municipalities into four �tourist macro destinations� is published on SURS's website (at Klasje � Classification server, see: <A class=seznam HREF= https://www.stat.si/Klasje/Klasje/Details/12489 "
+"TARGET=_blank>eTUR_Makrodest � �Tourist macro destinations� for accommodation statistics).";
+DATASYMBOL1="N";
+DATASYMBOL1[en]="N";
+DATASYMBOL2="-";
+DATASYMBOL2[en]="-";
+DATASYMBOL4="z";
+DATASYMBOL4[en]="z";
+DATA=
+61839 182028 164470 
+26257 62731 56381 
+20020 45865 40820 
+"...." "...." "...." 
+"...." "...." "...." 
+1858 4958 4427 
+3063 8523 8057 
+10809 32816 28977 
+10809 32816 28977 
+24773 86481 79112 
+1177 4056 4048 
+1680 5516 4878 
+1968 5990 5442 
+14097 51696 47243 
+1010 5964 5579 
+1065 5308 4603 
+914 2615 2574 
+2862 5336 4745 
+21862 75876 67662 
+6998 17406 16172 
+5087 12493 11554 
+42 98 98 
+600 1458 1387 
+624 1607 1459 
+645 1750 1674 
+4901 19271 15653 
+4901 19271 15653 
+9963 39199 35837 
+"...." "...." "...." 
+645 2359 1840 
+715 2226 2029 
+6225 24610 22395 
+748 4704 4330 
+479 1997 1974 
+429 1281 1271 
+"...." "...." "...." 
+10722 32946 27763 
+5441 16156 12356 
+3533 10806 7340 
+"...." "...." "...." 
+"...." "...." "...." 
+468 1278 1154 
+1244 3604 3405 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+535 1473 1466 
+224 762 712 
+2522 8407 7801 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+16455 42366 39645 
+6397 13913 13347 
+5191 10732 10377 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+659 1771 1670 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+315 995 946 
+427 1339 1234 
+3884 13492 12231 
+"...." "...." "...." 
+311 1657 1637 
+188 627 616 
+1923 3232 2671 
+12800 30840 29400 
+7421 15256 14506 
+6209 11834 11549 
+"...." "...." "...." 
+199 665 472 
+"...." "...." "...." 
+515 1398 1308 
+1886 4185 4137 
+1886 4185 4137 
+3493 11399 10757 
+"...." "...." "...." 
+185 689 626 
+602 1663 1467 
+1466 5187 4816 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+233 456 456 
+61524 182136 163847 
+25560 58447 54366 
+19543 42792 39548 
+132 324 303 
+1110 2868 2650 
+1812 4571 4345 
+2963 7892 7520 
+11070 37710 29928 
+11070 37710 29928 
+24894 85979 79553 
+1016 3587 3575 
+1747 5555 5427 
+2037 6173 5595 
+14027 51448 47548 
+950 5874 5348 
+1028 5180 4125 
+918 2651 2604 
+3171 5511 5331 
+21579 78848 66806 
+6526 16563 14838 
+4728 11892 10413 
+37 93 86 
+532 1354 1290 
+603 1534 1438 
+626 1690 1611 
+5007 23788 16137 
+5007 23788 16137 
+10046 38497 35831 
+347 1130 1128 
+646 1899 1867 
+761 2355 2073 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+"...." "...." "...." 
+487 1098 1028 
+10508 29986 26744 
+5339 13307 11780 
+3555 8664 7399 
+"...." "...." "...." 
+164 386 378 
+"...." "...." "...." 
+1132 3017 2822 
+1232 3038 2990 
+1232 3038 2990 
+3937 13641 11974 
+"...." "...." "...." 
+594 1655 1653 
+247 831 780 
+"...." "...." "...." 
+123 653 649 
+140 1617 574 
+"...." "...." "...." 
+"...." "...." "...." 
+16875 43172 41008 
+6541 14117 13614 
+5318 10982 10598 
+"...." "...." "...." 
+201 492 474 
+"...." "...." "...." 
+692 1826 1750 
+2889 6568 6494 
+2889 6568 6494 
+7445 22487 20900 
+"...." "...." "...." 
+345 1418 1375 
+434 1391 1263 
+"...." "...." "...." 
+"...." "...." "...." 
+276 1224 1224 
+"...." "...." "...." 
+1970 2873 2768 
+12562 30130 29289 
+7154 14460 14134 
+5942 11254 11138 
+56 153 141 
+213 636 508 
+430 1058 1010 
+513 1359 1337 
+1942 4316 4307 
+1942 4316 4307 
+3466 11354 10848 
+555 2071 2063 
+162 583 532 
+595 1596 1479 
+1644 5744 5439 
+68 330 315 
+"...." "...." "...." 
+154 345 335 
+"...." "...." "...." 
+65799 190787 174957 
+26416 60430 56572 
+20490 44423 41520 
+112 282 263 
+1082 2950 2663 
+1778 4552 4326 
+2954 8223 7800 
+12415 38444 32313 
+12415 38444 32313 
+26968 91913 86072 
+1036 3666 3663 
+1926 6013 5872 
+2078 6187 5709 
+15454 56564 52230 
+947 5633 5384 
+1049 4521 4227 
+1109 3186 3114 
+3369 6143 5873 
+22563 79945 70313 
+6775 16737 15518 
+4959 11842 10862 
+37 91 86 
+513 1410 1330 
+589 1493 1413 
+677 1901 1827 
+4960 22190 16511 
+4960 22190 16511 
+10828 41018 38284 
+"...." "...." "...." 
+714 2038 1984 
+782 2329 2114 
+6719 26422 24313 
+704 4425 4191 
+482 2011 1967 
+553 1541 1515 
+"...." "...." "...." 
+11806 32781 29973 
+5943 14903 13254 
+4089 9943 8540 
+"...." "...." "...." 
+"...." "...." "...." 
+467 1171 1129 
+1187 3324 3127 
+1241 3211 3029 
+1241 3211 3029 
+4622 14667 13690 
+"...." "...." "...." 
+621 1657 1656 
+239 807 769 
+2417 8124 7517 
+"...." "...." "...." 
+155 866 618 
+160 441 429 
+"...." "...." "...." 
+17206 44758 42484 
+6453 14013 13501 
+5377 11111 10747 
+"...." "...." "...." 
+"...." "...." "...." 
+299 807 782 
+580 1617 1514 
+2971 6881 6757 
+2971 6881 6757 
+7782 23864 22226 
+"...." "...." "...." 
+362 1476 1448 
+430 1403 1262 
+4517 15724 14406 
+"...." "...." "...." 
+282 1258 1256 
+221 767 738 
+1842 2778 2658 
+14224 33303 32187 
+7245 14777 14299 
+6065 11527 11371 
+"...." "...." "...." 
+"...." "...." "...." 
+423 1081 1002 
+510 1381 1332 
+3243 6162 6016 
+3243 6162 6016 
+3736 12364 11872 
+555 2068 2065 
+229 842 784 
+627 1648 1564 
+1801 6294 5994 
+77 380 365 
+130 386 386 
+175 437 432 
+142 309 282 
+67298 189887 178795 
+26830 61600 57540 
+20826 45104 42307 
+132 362 303 
+1131 3137 2811 
+1666 4537 4038 
+3075 8460 8081 
+12639 32936 32156 
+12639 32936 32156 
+27829 95351 89099 
+1040 3713 3683 
+1992 6754 6144 
+2103 6257 5790 
+16471 59670 55564 
+995 5576 5452 
+1027 4694 4123 
+967 2869 2821 
+3234 5818 5522 
+23202 75923 71947 
+6979 17263 16099 
+5111 12118 11277 
+37 93 86 
+552 1582 1450 
+559 1444 1340 
+720 2026 1946 
+5122 16632 16410 
+5122 16632 16410 
+11101 42028 39438 
+334 1092 1072 
+677 2128 2075 
+779 2221 2118 
+7140 27753 25668 
+759 4398 4278 
+473 2094 1929 
+403 1222 1199 
+536 1120 1099 
+12435 35531 31401 
+6171 15825 13702 
+4283 10577 8926 
+"...." "...." "...." 
+"...." "...." "...." 
+426 1304 1048 
+1264 3476 3272 
+1279 3365 2950 
+1279 3365 2950 
+4985 16341 14749 
+"...." "...." "...." 
+701 2197 1737 
+220 737 700 
+2708 9106 8493 
+"...." "...." "...." 
+154 966 608 
+172 501 499 
+840 1892 1776 
+17474 45302 43242 
+6552 14010 13691 
+5451 11095 10906 
+"...." "...." "...." 
+"...." "...." "...." 
+303 767 752 
+590 1626 1561 
+3002 6930 6789 
+3002 6930 6789 
+7920 24362 22762 
+"...." "...." "...." 
+371 1513 1480 
+431 1513 1276 
+4717 16187 15081 
+"...." "...." "...." 
+279 1283 1236 
+231 781 763 
+1762 2626 2467 
+14187 33131 32205 
+7128 14502 14048 
+5981 11314 11198 
+"...." "...." "...." 
+"...." "...." "...." 
+378 1022 898 
+501 1332 1302 
+3236 6009 6007 
+3236 6009 6007 
+3823 12620 12150 
+555 2071 2065 
+243 916 852 
+673 1786 1696 
+1906 6624 6322 
+68 327 325 
+121 351 350 
+161 365 360 
+96 180 180;

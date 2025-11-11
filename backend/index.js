@@ -20,6 +20,7 @@ const {
   clearHandler,
 } = require("./handlers/exportHandler");
 const { handleScrape, handleCities } = require("./handlers/scrapeHandler");
+const { getPXMeta, getPXSeries } = require("./handlers/pxHandler");
 
 app.post("/api/upload", upload.array("files", 10), handleUpload);
 app.get("/api/documents", handleDocuments);
@@ -30,6 +31,10 @@ app.post("/api/export/xml", exportXML);
 app.post("/api/clear", clearHandler);
 app.get("/api/scrape-attractions", handleScrape);
 app.get("/api/attractions-cities", handleCities);
+
+// PC-Axis endpoints
+app.get("/api/px/meta", getPXMeta);
+app.get("/api/px/series", getPXSeries);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
