@@ -20,6 +20,7 @@ interface Attraction {
 const GRPCDemo: React.FC = () => {
   const backendPort = 3000;
   const [documents, setDocuments] = useState<string[]>([]);
+  const [selectedDocs, setSelectedDocs] = useState<Record<string, boolean>>({});
   const [docsLoading, setDocsLoading] = useState(false);
   const [docsError, setDocsError] = useState<string>("");
   const [joined, setJoined] = useState<JoinedItem[]>([]);
@@ -29,7 +30,7 @@ const GRPCDemo: React.FC = () => {
   const [filterLoading, setFilterLoading] = useState(false);
   const [filterError, setFilterError] = useState<string>("");
   const [filters, setFilters] = useState<FilterCriteria[]>([
-    { field: "kategorija", operator: "contains", value: "" },
+    { field: "citySlug", operator: "contains", value: "" },
   ]);
   const [streamCity, setStreamCity] = useState<string>("berlin-germany");
   const [attractions, setAttractions] = useState<Attraction[]>([]);
@@ -50,6 +51,11 @@ const GRPCDemo: React.FC = () => {
         `http://localhost:${backendPort}/grpc/documents`
       );
       setDocuments(resp.data?.documents || []);
+      const nextSel: Record<string, boolean> = {};
+      (resp.data?.documents || []).forEach((d: string) => {
+        nextSel[d] = /^(trips|itinerary|attractions)\.xml$/i.test(d);
+      });
+      setSelectedDocs(nextSel);
       console.log("[GRPCDemo] Documents:", resp.data?.documents);
     } catch (e: any) {
       console.error("[GRPCDemo] Documents error:", e);
@@ -63,21 +69,42 @@ const GRPCDemo: React.FC = () => {
     setJoinLoading(true);
     setJoinError("");
     try {
-      console.log("[GRPCDemo] JoinData...");
+      // preserve the visible documents order
+      const sel = (documents || []).filter((d) => selectedDocs[d]);
       const resp = await axios.post(
         `http://localhost:${backendPort}/grpc/join`,
-        {
-          includeArtikli: true,
-          includeDobavitelji: true,
-          includeNarocila: true,
-          includeStranke: true,
-        }
+        { selectedFiles: sel }
       );
-      setJoined(resp.data?.items || []);
-      setFiltered(resp.data?.items || []);
+      const raw: any[] = (resp.data?.items || []).map((x: any) => x?.fields ?? x);
+      const items = raw.map((it) => {
+        // pick primitive fields
+        const flat: Record<string, any> = {};
+        Object.keys(it || {}).forEach((k) => {
+          const v = (it as any)[k];
+          if (v == null) return;
+          if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") {
+            flat[k] = v;
+          }
+        });
+        // derive helpful fields from stops if present
+        if (Array.isArray(it?.stops)) {
+          flat.stopsCount = it.stops.length;
+          if (it.stops.length > 0) {
+            flat.firstStopName = it.stops[0].name || "";
+            flat.firstStopType = it.stops[0].type || "";
+          }
+        }
+        // ensure some columns always exist
+        if (Object.keys(flat).length === 0) {
+          flat.json = JSON.stringify(it);
+        }
+        return flat;
+      });
+      setJoined(items);
+      setFiltered(items);
       console.log(
         "[GRPCDemo] Join got",
-        (resp.data?.items || []).length,
+        items.length,
         "items"
       );
     } catch (e: any) {
@@ -254,7 +281,16 @@ const GRPCDemo: React.FC = () => {
         )}
         <ul>
           {documents.map((d) => (
-            <li key={d}>{d}</li>
+            <li key={d} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <input
+                type='checkbox'
+                checked={!!selectedDocs[d]}
+                onChange={(e) =>
+                  setSelectedDocs((prev) => ({ ...prev, [d]: e.target.checked }))
+                }
+              />
+              <span>{d}</span>
+            </li>
           ))}
         </ul>
       </div>

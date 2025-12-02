@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itineraries>
+  <itinerary id="I1">
+    <tripId>T1</tripId>
+    <day>1</day>
+    <citySlug>paris-france</citySlug>
+    <area>central</area>
+    <stops>
+      <stop>
+        <attractionId>A2</attractionId>
+        <time>10:00</time>
+      </stop>
+      <stop>
+        <attractionId>A1</attractionId>
+        <time>16:00</time>
+      </stop>
+    </stops>
+  </itinerary>
+  <itinerary id="I2">
+    <tripId>T1</tripId>
+    <day>2</day>
+    <citySlug>paris-france</citySlug>
+    <area>south</area>
+    <stops>
+      <stop>
+        <attractionId>A3</attractionId>
+        <time>12:30</time>
+      </stop>
+    </stops>
+  </itinerary>
+  <itinerary id="I3">
+    <tripId>T2</tripId>
+    <day>1</day>
+    <citySlug>berlin-germany</citySlug>
+    <area>central</area>
+    <stops>
+      <stop>
+        <attractionId>A4</attractionId>
+        <time>11:00</time>
+      </stop>
+    </stops>
+  </itinerary>
+</itineraries>

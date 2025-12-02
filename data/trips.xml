@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trips>
+  <trip id="T1">
+    <city>Paris, France</city>
+    <citySlug>paris-france</citySlug>
+    <durationDays>3</durationDays>
+    <preferences>
+      <culture>true</culture>
+      <viewpoints>true</viewpoints>
+      <food>true</food>
+      <musicPlaylist>true</musicPlaylist>
+    </preferences>
+  </trip>
+  <trip id="T2">
+    <city>Berlin, Germany</city>
+    <citySlug>berlin-germany</citySlug>
+    <durationDays>2</durationDays>
+    <preferences>
+      <culture>true</culture>
+      <viewpoints>false</viewpoints>
+      <food>true</food>
+      <musicPlaylist>false</musicPlaylist>
+    </preferences>
+  </trip>
+</trips>

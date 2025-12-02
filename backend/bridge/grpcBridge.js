@@ -32,20 +32,42 @@ router.post("/join", (req, res) => {
   const payload = req.body || {};
   client.JoinData(payload, (err, response) => {
     if (err) return res.status(500).json({ error: String(err.message || err) });
-    res.json(response);
+    const items = (response.items || []).map((x) => {
+      try {
+        return JSON.parse(x.json || "{}");
+      } catch (e) {
+        return {};
+      }
+    });
+    res.json({ items });
   });
 });
 
 router.post("/filter", (req, res) => {
-  const payload = req.body || {};
+  const input = req.body || {};
+  const payload = {
+    ...input,
+    items: Array.isArray(input.items)
+      ? input.items.map((it) => ({ json: JSON.stringify(it) }))
+      : [],
+  };
   client.FilterData(payload, (err, response) => {
     if (err) return res.status(500).json({ error: String(err.message || err) });
-    res.json(response);
+    const items = (response.items || []).map((x) => {
+      try { return JSON.parse(x.json || "{}"); } catch { return {}; }
+    });
+    res.json({ items });
   });
 });
 
 router.post("/export", (req, res) => {
-  const payload = req.body || {};
+  const input = req.body || {};
+  const payload = {
+    ...input,
+    items: Array.isArray(input.items)
+      ? input.items.map((it) => ({ json: JSON.stringify(it) }))
+      : [],
+  };
   client.ExportData(payload, (err, response) => {
     if (err) return res.status(500).json({ error: String(err.message || err) });
     res.setHeader(

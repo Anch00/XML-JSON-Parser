@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attractions>
+  <attraction id="A1">
+    <citySlug>paris-france</citySlug>
+    <name>Eiffel Tower</name>
+    <type>viewpoint</type>
+    <area>west</area>
+  </attraction>
+  <attraction id="A2">
+    <citySlug>paris-france</citySlug>
+    <name>Louvre Museum</name>
+    <type>museum</type>
+    <area>central</area>
+  </attraction>
+  <attraction id="A3">
+    <citySlug>paris-france</citySlug>
+    <name>Le Comptoir du Relais</name>
+    <type>restaurant</type>
+    <area>south</area>
+  </attraction>
+  <attraction id="A4">
+    <citySlug>berlin-germany</citySlug>
+    <name>Brandenburg Gate</name>
+    <type>viewpoint</type>
+    <area>central</area>
+  </attraction>
+  <attraction id="A5">
+    <citySlug>berlin-germany</citySlug>
+    <name>Pergamon Museum</name>
+    <type>museum</type>
+    <area>north</area>
+  </attraction>
+  <attraction id="A6">
+    <citySlug>berlin-germany</citySlug>
+    <name>Mustafa's Gemüse Kebap</name>
+    <type>restaurant</type>
+    <area>south</area>
+  </attraction>
+</attractions>
