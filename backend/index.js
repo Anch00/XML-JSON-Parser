@@ -21,6 +21,8 @@ const {
 } = require("./handlers/exportHandler");
 const { handleScrape, handleCities } = require("./handlers/scrapeHandler");
 const { getPXMeta, getPXSeries } = require("./handlers/pxHandler");
+const grpcServer = require("./grpc/server");
+const grpcBridge = require("./bridge/grpcBridge");
 
 app.post("/api/upload", upload.array("files", 10), handleUpload);
 app.get("/api/documents", handleDocuments);
@@ -36,7 +38,16 @@ app.get("/api/attractions-cities", handleCities);
 app.get("/api/px/meta", getPXMeta);
 app.get("/api/px/series", getPXSeries);
 
+// gRPC bridge routes
+app.use("/grpc", grpcBridge);
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () =>
-  console.log(`Backend listening on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`Backend listening on http://localhost:${PORT}`);
+  // Start gRPC server alongside Express
+  try {
+    grpcServer.start();
+  } catch (e) {
+    console.error("Failed to start gRPC server:", e);
+  }
+});

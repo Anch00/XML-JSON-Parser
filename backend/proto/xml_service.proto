@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package xmlservice;
+
+// Messages
+message Empty {}
+
+message DocumentsResponse {
+  repeated string documents = 1;
+}
+
+message JoinRequest {
+  // Optional: which sources to include; here we assume all
+  bool includeArtikli = 1;
+  bool includeDobavitelji = 2;
+  bool includeNarocila = 3;
+  bool includeStranke = 4;
+}
+
+message JoinedItem {
+  string artikelId = 1;
+  string naziv = 2;
+  string kategorija = 3;
+  int32 zaloga = 4;
+  string dobaviteljId = 5;
+  string dobaviteljNaziv = 6;
+  string narociloId = 7;
+  string status = 8;
+  string strankaId = 9;
+  string strankaIme = 10;
+}
+
+message JoinResponse {
+  repeated JoinedItem items = 1;
+}
+
+message FilterCriteria {
+  string field = 1;
+  string operator = 2; // contains, equals, greaterThan, lessThan, greaterEqual, lessEqual
+  string value = 3;
+}
+
+message FilterRequest {
+  repeated FilterCriteria filters = 1;
+  repeated JoinedItem items = 2; // input items to filter
+}
+
+message FilterResponse {
+  repeated JoinedItem items = 1;
+}
+
+enum ExportFormat {
+  EXPORT_JSON = 0;
+  EXPORT_XML = 1;
+}
+
+message ExportRequest {
+  ExportFormat format = 1;
+  repeated JoinedItem items = 2;
+  string rootName = 3; // for XML export
+}
+
+message ExportResponse {
+  bytes content = 1;
+  string filename = 2;
+}
+
+message AttractionRequest {
+  string citySlug = 1;
+}
+
+message Attraction {
+  string name = 1;
+  string description = 2;
+  string url = 3;
+}
+
+// Service definition with at least 4 RPCs and one streaming
+service XmlService {
+  rpc ListDocuments(Empty) returns (DocumentsResponse);
+  rpc JoinData(JoinRequest) returns (JoinResponse);
+  rpc FilterData(FilterRequest) returns (FilterResponse);
+  rpc ExportData(ExportRequest) returns (ExportResponse);
+  rpc StreamAttractions(AttractionRequest) returns (stream Attraction);
+}

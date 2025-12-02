@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import AttractionsComponent from "./components/AttractionsComponent";
 import GenericXMLParserComponent from "./components/GenericXMLParserComponent";
+import GRPCDemo from "./components/GRPCDemo";
 
 const App: React.FC = () => {
-  const [tab, setTab] = useState<"parser" | "scraper" | "px">("parser");
+  const [tab, setTab] = useState<"parser" | "scraper" | "px" | "grpc">(
+    "parser"
+  );
 
   return (
     <div>
@@ -23,14 +26,18 @@ const App: React.FC = () => {
           onClick={() => setTab("px")}>
           PX Visualization
         </button>
+        <button
+          className={tab === "grpc" ? "btn" : "btn secondary"}
+          onClick={() => setTab("grpc")}>
+          gRPC Demo
+        </button>
       </header>
 
       <main style={{ padding: 12 }}>
-        {tab === "parser" ? (
-          <GenericXMLParserComponent />
-        ) : tab === "scraper" ? (
-          <AttractionsComponent />
-        ) : (
+        {tab === "parser" && <GenericXMLParserComponent />}
+        {tab === "scraper" && <AttractionsComponent />}
+        {tab === "grpc" && <GRPCDemo />}
+        {tab === "px" && (
           // lazy import PXVisualization to avoid bundling issues when deps are missing
           <React.Suspense fallback={<div>Loading PX visualization...</div>}>
             <PXVisualizationLazy />

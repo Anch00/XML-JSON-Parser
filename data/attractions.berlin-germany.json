@@ -1,0 +1,56 @@
+{
+  "citySlug": "berlin-germany",
+  "updatedAt": "2025-12-02T13:08:42.158Z",
+  "attractions": [
+    {
+      "name": "Berliner Unterwelten (Subterranean Berlin)",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/berliner-unterwelten-subterranean-berlin"
+    },
+    {
+      "name": "Liquidrom",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/liquidrom"
+    },
+    {
+      "name": "Monsterkabinett",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/monster-kabinett"
+    },
+    {
+      "name": "Berlin Botanical Garden",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/berlin-botanical-garden"
+    },
+    {
+      "name": "Tajikistan Tearoom",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/tajikistan-tearoom"
+    },
+    {
+      "name": "Pergamon Museum",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/pergamon-museum"
+    },
+    {
+      "name": "Design Panoptikum",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/design-panoptikum"
+    },
+    {
+      "name": "Burgermeister",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/burgermeister"
+    },
+    {
+      "name": "Café Strauss",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/cafe-strauss-berlin"
+    },
+    {
+      "name": "Prinzessinnengarten",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/prinzessinnengarten"
+    }
+  ]
+}

@@ -2,11 +2,12 @@ const puppeteer = require("puppeteer");
 const path = require("path");
 const fs = require("fs");
 
-async function scrapeAttractionsPage(url) {
-  const browser = await puppeteer.launch({
-    headless: true,
+async function scrapeAttractionsPage(url, debug = false) {
+  const launchOpts = {
+    headless: debug ? false : true,
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
-  });
+  };
+  const browser = await puppeteer.launch(launchOpts);
   const page = await browser.newPage();
   await page.setUserAgent(
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
@@ -143,6 +144,22 @@ async function scrapeAttractionsPage(url) {
         return out;
       });
 
+      if (debug) {
+        try {
+          const dbgDir = path.join(__dirname, "..", "..", "data", "debug");
+          if (!fs.existsSync(dbgDir)) fs.mkdirSync(dbgDir, { recursive: true });
+          await page.screenshot({
+            path: path.join(dbgDir, "atlas-obscura.png"),
+            fullPage: true,
+          });
+          const html = await page.content();
+          fs.writeFileSync(
+            path.join(dbgDir, "atlas-obscura.html"),
+            html,
+            "utf8"
+          );
+        } catch {}
+      }
       await browser.close();
       return aoItems;
     } catch (e) {
@@ -212,6 +229,7 @@ async function scrapeAttractionsPage(url) {
 async function handleScrape(req, res) {
   let url = req.query.url;
   const citySlug = (req.query.citySlug || "").toString().trim();
+  const debug = req.query.debug === "1" || process.env.SCRAPE_DEBUG === "1";
   if (!url) {
     url = citySlug
       ? `https://www.atlasobscura.com/things-to-do/${encodeURIComponent(
@@ -220,12 +238,32 @@ async function handleScrape(req, res) {
       : "https://www.atlasobscura.com/things-to-do/berlin-germany";
   }
   try {
-    const attractions = await scrapeAttractionsPage(url);
+    const attractions = await scrapeAttractionsPage(url, debug);
     const dataPath = path.join(__dirname, "..", "..", "data");
     if (!fs.existsSync(dataPath)) fs.mkdirSync(dataPath, { recursive: true });
-    const filePath = path.join(dataPath, "attractions.json");
-    fs.writeFileSync(filePath, JSON.stringify(attractions, null, 2), "utf8");
-    res.json({ ok: true, source: url, count: attractions.length, attractions });
+    const slugUsed = citySlug || "berlin-germany";
+    const filePathLast = path.join(dataPath, "attractions.json");
+    const filePathCity = path.join(dataPath, `attractions.${slugUsed}.json`);
+    // Ne prepiši datoteke z praznim seznamom – ohrani zadnje uspešne rezultate
+    if (attractions && attractions.length > 0) {
+      const payload = {
+        citySlug: slugUsed,
+        updatedAt: new Date().toISOString(),
+        attractions,
+      };
+      // Shrani per-city datoteko
+      fs.writeFileSync(filePathCity, JSON.stringify(payload, null, 2), "utf8");
+      // Posodobi tudi "zadnje scrapanje" (za nazaj kompatibilnost)
+      fs.writeFileSync(filePathLast, JSON.stringify(payload, null, 2), "utf8");
+    }
+    res.json({
+      ok: true,
+      source: url,
+      count: attractions.length,
+      debug,
+      citySlug: slugUsed,
+      attractions,
+    });
   } catch (err) {
     console.error("Scrape error:", err);
     res.status(500).json({ error: String(err) });

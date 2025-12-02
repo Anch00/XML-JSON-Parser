@@ -1,0 +1,31 @@
+# Node
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env & editor
+.env
+.env.*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build outputs
+frontend/dist/
+frontend/.vite/
+
+# Runtime uploads/cache
+uploads/
+backend/uploads/
+
+# Generated data exports
+data/filtrirano.generated.xml
+data/filtrirano.generated.json
+
+# Coverage & misc
+coverage/
+.nyc_output/
