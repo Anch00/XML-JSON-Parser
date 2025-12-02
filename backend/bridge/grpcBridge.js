@@ -54,7 +54,11 @@ router.post("/filter", (req, res) => {
   client.FilterData(payload, (err, response) => {
     if (err) return res.status(500).json({ error: String(err.message || err) });
     const items = (response.items || []).map((x) => {
-      try { return JSON.parse(x.json || "{}"); } catch { return {}; }
+      try {
+        return JSON.parse(x.json || "{}");
+      } catch {
+        return {};
+      }
     });
     res.json({ items });
   });

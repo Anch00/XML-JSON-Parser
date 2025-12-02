@@ -55,9 +55,17 @@ function detectJoins(docs) {
       });
       for (const f of fields) {
         const fLower = f.toLowerCase();
-        const hitsTarget = fLower.includes(tgt.stem) || fLower.includes(tgt.stem.replace(/s$/, ""));
+        const hitsTarget =
+          fLower.includes(tgt.stem) ||
+          fLower.includes(tgt.stem.replace(/s$/, ""));
         if (hitsTarget) {
-          joins.push({ source: src, target: tgt, sourceField: f, targetField: "id", alias: tgt.stem });
+          joins.push({
+            source: src,
+            target: tgt,
+            sourceField: f,
+            targetField: "id",
+            alias: tgt.stem,
+          });
         }
       }
     }
@@ -69,9 +77,10 @@ function genericJoinSelectedFiles(selectedFiles) {
   const docs = selectedFiles.map((f) => readDocWithMeta(f));
   if (!docs.length) return [];
   // Prefer itinerary as base if present, else trips, else first
-  let base = docs.find((d) => /itinerary/i.test(d.stem)) ||
-             docs.find((d) => /trips?/i.test(d.stem)) ||
-             docs[0];
+  let base =
+    docs.find((d) => /itinerary/i.test(d.stem)) ||
+    docs.find((d) => /trips?/i.test(d.stem)) ||
+    docs[0];
   let result = (base.items || []).map((it) => ({ ...it }));
   const joins = detectJoins(docs);
   for (const j of joins) {
@@ -241,7 +250,9 @@ module.exports = {
       } else {
         items = joinDataServer();
       }
-      callback(null, { items: items.map((it) => ({ json: JSON.stringify(it) })) });
+      callback(null, {
+        items: items.map((it) => ({ json: JSON.stringify(it) })),
+      });
     } catch (err) {
       callback(err);
     }
@@ -250,13 +261,20 @@ module.exports = {
   FilterData(call, callback) {
     try {
       const { filters, items } = call.request || {};
-      const source = items && items.length
-        ? items.map((x) => {
-            try { return JSON.parse(x.json || "{}"); } catch { return {}; }
-          })
-        : joinDataServer();
+      const source =
+        items && items.length
+          ? items.map((x) => {
+              try {
+                return JSON.parse(x.json || "{}");
+              } catch {
+                return {};
+              }
+            })
+          : joinDataServer();
       const filtered = applyFilters(source, filters || []);
-      callback(null, { items: filtered.map((it) => ({ json: JSON.stringify(it) })) });
+      callback(null, {
+        items: filtered.map((it) => ({ json: JSON.stringify(it) })),
+      });
     } catch (err) {
       callback(err);
     }
@@ -266,7 +284,11 @@ module.exports = {
     try {
       const { format, items, rootName } = call.request;
       const plainItems = (items || []).map((x) => {
-        try { return JSON.parse(x.json || "{}"); } catch { return {}; }
+        try {
+          return JSON.parse(x.json || "{}");
+        } catch {
+          return {};
+        }
       });
       if (format === 1) {
         // XML

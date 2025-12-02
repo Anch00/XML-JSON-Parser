@@ -75,14 +75,20 @@ const GRPCDemo: React.FC = () => {
         `http://localhost:${backendPort}/grpc/join`,
         { selectedFiles: sel }
       );
-      const raw: any[] = (resp.data?.items || []).map((x: any) => x?.fields ?? x);
+      const raw: any[] = (resp.data?.items || []).map(
+        (x: any) => x?.fields ?? x
+      );
       const items = raw.map((it) => {
         // pick primitive fields
         const flat: Record<string, any> = {};
         Object.keys(it || {}).forEach((k) => {
           const v = (it as any)[k];
           if (v == null) return;
-          if (typeof v === "string" || typeof v === "number" || typeof v === "boolean") {
+          if (
+            typeof v === "string" ||
+            typeof v === "number" ||
+            typeof v === "boolean"
+          ) {
             flat[k] = v;
           }
         });
@@ -102,11 +108,7 @@ const GRPCDemo: React.FC = () => {
       });
       setJoined(items);
       setFiltered(items);
-      console.log(
-        "[GRPCDemo] Join got",
-        items.length,
-        "items"
-      );
+      console.log("[GRPCDemo] Join got", items.length, "items");
     } catch (e: any) {
       console.error("[GRPCDemo] Join error:", e);
       setJoinError(e?.message || String(e));
@@ -281,12 +283,17 @@ const GRPCDemo: React.FC = () => {
         )}
         <ul>
           {documents.map((d) => (
-            <li key={d} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <li
+              key={d}
+              style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <input
                 type='checkbox'
                 checked={!!selectedDocs[d]}
                 onChange={(e) =>
-                  setSelectedDocs((prev) => ({ ...prev, [d]: e.target.checked }))
+                  setSelectedDocs((prev) => ({
+                    ...prev,
+                    [d]: e.target.checked,
+                  }))
                 }
               />
               <span>{d}</span>
