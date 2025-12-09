@@ -4,7 +4,7 @@ import GenericXMLParserComponent from "./components/GenericXMLParserComponent";
 import GRPCDemo from "./components/GRPCDemo";
 
 const App: React.FC = () => {
-  const [tab, setTab] = useState<"parser" | "scraper" | "px" | "grpc">(
+  const [tab, setTab] = useState<"parser" | "scraper" | "px" | "grpc" | "llm">(
     "parser"
   );
 
@@ -31,6 +31,11 @@ const App: React.FC = () => {
           onClick={() => setTab("grpc")}>
           gRPC Demo
         </button>
+        <button
+          className={tab === "llm" ? "btn" : "btn secondary"}
+          onClick={() => setTab("llm")}>
+          Trip Planner (LLM)
+        </button>
       </header>
 
       <main style={{ padding: 12 }}>
@@ -43,6 +48,11 @@ const App: React.FC = () => {
             <PXVisualizationLazy />
           </React.Suspense>
         )}
+        {tab === "llm" && (
+          <React.Suspense fallback={<div>Loading Trip Planner...</div>}>
+            <LLMTripPlanner />
+          </React.Suspense>
+        )}
       </main>
     </div>
   );
@@ -50,6 +60,10 @@ const App: React.FC = () => {
 
 const PXVisualizationLazy = React.lazy(
   () => import("./components/PXVisualization")
+);
+
+const LLMTripPlanner = React.lazy(
+  () => import("./components/LLMTripPlanner")
 );
 
 export default App;

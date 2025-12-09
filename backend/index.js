@@ -1,4 +1,5 @@
 // Minimal modular backend entrypoint
+require("dotenv").config();
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
@@ -21,6 +22,7 @@ const {
 } = require("./handlers/exportHandler");
 const { handleScrape, handleCities } = require("./handlers/scrapeHandler");
 const { getPXMeta, getPXSeries } = require("./handlers/pxHandler");
+const { handleLLMTripPlan } = require("./handlers/llmPlanHandler");
 const grpcServer = require("./grpc/server");
 const grpcBridge = require("./bridge/grpcBridge");
 
@@ -37,6 +39,9 @@ app.get("/api/attractions-cities", handleCities);
 // PC-Axis endpoints
 app.get("/api/px/meta", getPXMeta);
 app.get("/api/px/series", getPXSeries);
+
+// LLM Trip Planner
+app.post("/api/llm/trip-plan", handleLLMTripPlan);
 
 // gRPC bridge routes
 app.use("/grpc", grpcBridge);

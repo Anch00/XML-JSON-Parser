@@ -22,12 +22,12 @@ export interface JoinConfig {
 export interface FilterCriteria {
   field: string;
   operator:
-    | "contains"
-    | "equals"
-    | "greaterThan"
-    | "lessThan"
-    | "greaterEqual"
-    | "lessEqual";
+  | "contains"
+  | "equals"
+  | "greaterThan"
+  | "lessThan"
+  | "greaterEqual"
+  | "lessEqual";
   value: string | number | boolean;
 }
 
@@ -103,4 +103,38 @@ export interface Stranka {
   skupniNakupi: number;
   datumZadnjegaNakupa: string;
   opomba?: string;
+}
+
+// Trip planner types (LLM JSON shape)
+export interface TripActivity {
+  time: string; // HH:MM
+  title: string;
+  type:
+  | "sightseeing"
+  | "museum"
+  | "food"
+  | "outdoor"
+  | "shopping"
+  | "transport"
+  | "other";
+  address: string;
+  durationMinutes: number;
+  notes?: string;
+  costEstimate?: number;
+}
+
+export interface TripDayPlan {
+  date: string; // ISO yyyy-mm-dd
+  weatherNote: string;
+  summary: string;
+  activities: TripActivity[];
+}
+
+export interface TripPlan {
+  destination: string;
+  startDate: string; // ISO yyyy-mm-dd
+  endDate: string; // ISO yyyy-mm-dd
+  days: TripDayPlan[];
+  tips: string[];
+  _generatedAt?: string; // metadata
 }
