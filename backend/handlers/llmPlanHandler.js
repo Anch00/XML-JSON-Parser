@@ -7,25 +7,8 @@ if (apiKey) {
   genAI = new GoogleGenerativeAI(apiKey);
 }
 
-// Allow overriding the model via env; provide safe fallbacks
-const MODEL_CANDIDATES = [
-  process.env.GEMINI_MODEL, // if provided
-  // Gemini 3.x (if supported for your key/region)
-  "gemini-3.0-pro",
-  "gemini-3.0-flash",
-  // Gemini 2.x (recommended if available for your API key/region)
-  "gemini-2.5-pro",
-  "gemini-2.5-flash",
-  "gemini-2.0-pro-exp",
-  "gemini-2.0-flash-exp",
-  "gemini-1.5-pro",
-  "gemini-1.5-pro-001",
-  "gemini-1.5-flash",
-  "gemini-1.5-flash-001",
-  "gemini-1.5-flash-8b",
-  "gemini-1.0-pro",
-  "gemini-1.0-pro-vision",
-].filter(Boolean);
+// Use only the model provided via environment
+const SELECTED_MODEL = process.env.GEMINI_MODEL;
 
 /**
  * Express handler: Generate trip plan via Gemini.
@@ -45,29 +28,32 @@ async function handleLLMTripPlan(req, res) {
         .json({ error: "Missing required fields: city, startDate" });
     }
 
-    // Try known model IDs until one works for this SDK/API version
-    let model;
-    let lastErr;
-    for (const m of MODEL_CANDIDATES) {
-      try {
-        model = genAI.getGenerativeModel({ model: m });
-        // quick lightweight check: ask for a tiny echo to validate availability
-        await model.generateContent({
-          contents: [{ role: "user", parts: [{ text: "ping" }] }],
-        });
-        break; // success
-      } catch (e) {
-        lastErr = e;
-        model = undefined;
-      }
-    }
-    if (!model) {
-      console.error("Gemini model selection failed.", lastErr);
-      return res.status(502).json({
-        error: "No supported Gemini model found for this API version",
-        hint: "Set GEMINI_MODEL in .env to a supported model (e.g., gemini-1.5-pro or gemini-1.5-flash-001).",
+    // Ensure a model is specified
+    if (!SELECTED_MODEL) {
+      return res.status(400).json({
+        error: "GEMINI_MODEL is not set in .env",
+        hint: "Set GEMINI_MODEL=gemini-3.0-pro (or your available model) and restart the backend.",
       });
     }
+    const model = genAI.getGenerativeModel({ model: SELECTED_MODEL });
+    // Optional tiny availability check (fast) to confirm the selected model works
+    try {
+      await model.generateContent({
+        contents: [{ role: "user", parts: [{ text: "ping" }] }],
+      });
+    } catch (e) {
+      console.error(
+        "Selected Gemini model seems unavailable:",
+        SELECTED_MODEL,
+        e?.status || e?.message || e
+      );
+      return res.status(502).json({
+        error: `Selected model '${SELECTED_MODEL}' is not available or unsupported`,
+        details: e?.message || String(e),
+        hint: "Update GEMINI_MODEL in .env to a supported model and restart.",
+      });
+    }
+    console.log("[LLM] Using Gemini model:", SELECTED_MODEL);
 
     const now = new Date();
     const currentIso = now.toISOString();
