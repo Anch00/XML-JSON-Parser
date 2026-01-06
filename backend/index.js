@@ -23,6 +23,7 @@ const {
 const { handleScrape, handleCities } = require("./handlers/scrapeHandler");
 const { getPXMeta, getPXSeries } = require("./handlers/pxHandler");
 const { handleLLMTripPlan } = require("./handlers/llmPlanHandler");
+const pipesHandler = require("./handlers/pipesHandler");
 const grpcServer = require("./grpc/server");
 const grpcBridge = require("./bridge/grpcBridge");
 
@@ -45,6 +46,10 @@ app.post("/api/llm/trip-plan", handleLLMTripPlan);
 
 // gRPC bridge routes
 app.use("/grpc", grpcBridge);
+
+// Named Pipes demo routes
+app.get("/api/pipes/health", pipesHandler.health);
+app.post("/api/pipes/attractions", pipesHandler.attractions);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

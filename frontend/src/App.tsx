@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import AttractionsComponent from "./components/AttractionsComponent";
 import GenericXMLParserComponent from "./components/GenericXMLParserComponent";
 import GRPCDemo from "./components/GRPCDemo";
+import NamedPipesDemo from "./components/NamedPipesDemo";
 
 const App: React.FC = () => {
-  const [tab, setTab] = useState<"parser" | "scraper" | "px" | "grpc" | "llm">(
-    "parser"
-  );
+  const [tab, setTab] = useState<
+    "parser" | "scraper" | "px" | "grpc" | "pipes" | "llm"
+  >("parser");
 
   return (
     <div>
@@ -32,6 +33,11 @@ const App: React.FC = () => {
           gRPC Demo
         </button>
         <button
+          className={tab === "pipes" ? "btn" : "btn secondary"}
+          onClick={() => setTab("pipes")}>
+          Named Pipes
+        </button>
+        <button
           className={tab === "llm" ? "btn" : "btn secondary"}
           onClick={() => setTab("llm")}>
           Trip Planner (LLM)
@@ -42,6 +48,7 @@ const App: React.FC = () => {
         {tab === "parser" && <GenericXMLParserComponent />}
         {tab === "scraper" && <AttractionsComponent />}
         {tab === "grpc" && <GRPCDemo />}
+        {tab === "pipes" && <NamedPipesDemo />}
         {tab === "px" && (
           // lazy import PXVisualization to avoid bundling issues when deps are missing
           <React.Suspense fallback={<div>Loading PX visualization...</div>}>
@@ -62,8 +69,6 @@ const PXVisualizationLazy = React.lazy(
   () => import("./components/PXVisualization")
 );
 
-const LLMTripPlanner = React.lazy(
-  () => import("./components/LLMTripPlanner")
-);
+const LLMTripPlanner = React.lazy(() => import("./components/LLMTripPlanner"));
 
 export default App;
