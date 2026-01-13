@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import AttractionsComponent from "./components/AttractionsComponent";
+import EventDrivenDemo from "./components/EventDrivenDemo";
 import GenericXMLParserComponent from "./components/GenericXMLParserComponent";
 import GRPCDemo from "./components/GRPCDemo";
 import NamedPipesDemo from "./components/NamedPipesDemo";
-import EventDrivenDemo from "./components/EventDrivenDemo";
 
 const App: React.FC = () => {
   const [tab, setTab] = useState<

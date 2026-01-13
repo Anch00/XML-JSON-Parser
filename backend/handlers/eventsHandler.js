@@ -8,7 +8,10 @@ async function health(req, res) {
 
 async function publishEvent(req, res) {
   const { type, data } = req.body || {};
-  if (!type) return res.status(400).json({ success: false, error: "Event type is required" });
+  if (!type)
+    return res
+      .status(400)
+      .json({ success: false, error: "Event type is required" });
   try {
     const out = await rabbitmq.publishEvent({ type, data });
     res.json({ success: true, ...out });
@@ -32,21 +35,32 @@ function subscribe(req, res) {
   res.setHeader("Connection", "keep-alive");
   res.write(`data: ${JSON.stringify({ type: "connected" })}\n\n`);
   // Send initial snapshot of attractions state
-  try { res.write(`data: ${JSON.stringify({ type: "snapshot", state: store.getAll() })}\n\n`); } catch {}
+  try {
+    res.write(
+      `data: ${JSON.stringify({ type: "snapshot", state: store.getAll() })}\n\n`
+    );
+  } catch {}
 
   const listener = (payload) => {
-    try { res.write(`data: ${JSON.stringify(payload)}\n\n`); } catch {}
+    try {
+      res.write(`data: ${JSON.stringify(payload)}\n\n`);
+    } catch {}
   };
   rabbitmq.addListener(listener);
 
   req.on("close", () => {
     rabbitmq.removeListener(listener);
-    try { res.end(); } catch {}
+    try {
+      res.end();
+    } catch {}
   });
 }
 function listAttractions(req, res) {
-  try { res.json({ items: store.getAll() }); }
-  catch (e) { res.status(500).json({ error: e?.message || String(e) }); }
+  try {
+    res.json({ items: store.getAll() });
+  } catch (e) {
+    res.status(500).json({ error: e?.message || String(e) });
+  }
 }
 
 module.exports = { health, publishEvent, stats, subscribe, listAttractions };

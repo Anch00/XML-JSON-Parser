@@ -34,14 +34,26 @@ function save() {
   }
 }
 
-function getAll() { return attractions.slice(); }
-function findIndexByName(name) { return attractions.findIndex((a) => a.name === name); }
-function findByName(name) { return attractions.find((a) => a.name === name) || null; }
+function getAll() {
+  return attractions.slice();
+}
+function findIndexByName(name) {
+  return attractions.findIndex((a) => a.name === name);
+}
+function findByName(name) {
+  return attractions.find((a) => a.name === name) || null;
+}
 
 function add({ name, description }) {
   if (!name) return { success: false, error: "Ime je obvezno" };
-  if (findIndexByName(name) !== -1) return { success: false, error: "Atrakcija že obstaja" };
-  const item = { name, description: description || "", visits: 0, lastVisited: null };
+  if (findIndexByName(name) !== -1)
+    return { success: false, error: "Atrakcija že obstaja" };
+  const item = {
+    name,
+    description: description || "",
+    visits: 0,
+    lastVisited: null,
+  };
   attractions.push(item);
   save();
   return { success: true, item };
@@ -53,7 +65,8 @@ function update({ originalName, name, description }) {
   if (idx === -1) return { success: false, error: "Atrakcija ne obstaja" };
   const current = attractions[idx];
   const newName = name || current.name;
-  const newDesc = typeof description === "string" ? description : current.description;
+  const newDesc =
+    typeof description === "string" ? description : current.description;
   attractions[idx] = { ...current, name: newName, description: newDesc };
   save();
   return { success: true, item: attractions[idx] };
@@ -71,7 +84,11 @@ function visited({ name }) {
   const idx = findIndexByName(name);
   if (idx === -1) return { success: false, error: "Atrakcija ne obstaja" };
   const current = attractions[idx];
-  attractions[idx] = { ...current, visits: (current.visits || 0) + 1, lastVisited: new Date().toISOString() };
+  attractions[idx] = {
+    ...current,
+    visits: (current.visits || 0) + 1,
+    lastVisited: new Date().toISOString(),
+  };
   save();
   return { success: true, item: attractions[idx] };
 }
