@@ -3,10 +3,11 @@ import AttractionsComponent from "./components/AttractionsComponent";
 import GenericXMLParserComponent from "./components/GenericXMLParserComponent";
 import GRPCDemo from "./components/GRPCDemo";
 import NamedPipesDemo from "./components/NamedPipesDemo";
+import EventDrivenDemo from "./components/EventDrivenDemo";
 
 const App: React.FC = () => {
   const [tab, setTab] = useState<
-    "parser" | "scraper" | "px" | "grpc" | "pipes" | "llm"
+    "parser" | "scraper" | "px" | "grpc" | "pipes" | "events" | "llm"
   >("parser");
 
   return (
@@ -38,6 +39,11 @@ const App: React.FC = () => {
           Named Pipes
         </button>
         <button
+          className={tab === "events" ? "btn" : "btn secondary"}
+          onClick={() => setTab("events")}>
+          RabbitMQ Events
+        </button>
+        <button
           className={tab === "llm" ? "btn" : "btn secondary"}
           onClick={() => setTab("llm")}>
           Trip Planner (LLM)
@@ -49,6 +55,7 @@ const App: React.FC = () => {
         {tab === "scraper" && <AttractionsComponent />}
         {tab === "grpc" && <GRPCDemo />}
         {tab === "pipes" && <NamedPipesDemo />}
+        {tab === "events" && <EventDrivenDemo />}
         {tab === "px" && (
           // lazy import PXVisualization to avoid bundling issues when deps are missing
           <React.Suspense fallback={<div>Loading PX visualization...</div>}>

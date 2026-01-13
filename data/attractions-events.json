@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Brandenburška vrata",
+    "description": "Simbol Berlina",
+    "visits": 0,
+    "lastVisited": null
+  },
+  {
+    "name": "Big Ben",
+    "description": "Ura v Londonu",
+    "visits": 1,
+    "lastVisited": "2026-01-13T19:51:10.976Z"
+  },
+  {
+    "name": "Eiffelov stolp",
+    "description": "Pariški simbol",
+    "visits": 0,
+    "lastVisited": null
+  }
+]
