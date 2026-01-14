@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import {
-  FaFileUpload,
-  FaLink,
-  FaFilter,
-  FaFileDownload,
-  FaTable,
-  FaPlus,
-  FaTrash,
-  FaCog,
   FaBroom,
+  FaCog,
+  FaFileDownload,
+  FaFileUpload,
+  FaFilter,
+  FaLink,
+  FaPlus,
+  FaTable,
+  FaTrash,
 } from "react-icons/fa";
 import { FilterCriteria, JoinConfig, JoinedData, XMLDocument } from "../types";
 import {
@@ -227,7 +227,7 @@ const GenericXMLParserComponent: React.FC = () => {
                     {doc.filename}
                   </div>
                   <div className='text-gray-300 text-sm mb-2'>
-                    Entitete: <span className='text-white'>{doc.entities.length}</span> | 
+                    Entitete: <span className='text-white'>{doc.entities.length}</span> |
                     Root: <span className='text-white'>&lt;{doc.rootElement}&gt;</span>
                   </div>
                   <div className='text-gray-400 text-xs'>

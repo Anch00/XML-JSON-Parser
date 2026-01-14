@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import {
-  FaFileUpload,
-  FaLink,
-  FaFilter,
   FaFileDownload,
-  FaTable,
+  FaFileUpload,
+  FaFilter,
+  FaLink,
   FaPlus,
+  FaTable,
   FaTrash,
 } from "react-icons/fa";
 import {
