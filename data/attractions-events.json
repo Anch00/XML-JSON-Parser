@@ -16,5 +16,11 @@
     "description": "Pariški simbol",
     "visits": 0,
     "lastVisited": null
+  },
+  {
+    "name": "Velika vrata",
+    "description": "Zelo so velika vrata",
+    "visits": 1,
+    "lastVisited": "2026-01-14T00:42:51.917Z"
   }
 ]

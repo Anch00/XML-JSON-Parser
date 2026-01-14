@@ -1,5 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
+import {
+  FaCheckCircle,
+  FaPaperPlane,
+  FaPause,
+  FaPlay,
+  FaStream,
+  FaSync,
+  FaTimesCircle,
+} from "react-icons/fa";
 
 interface ProcessedEvent {
   event: { type: string; id: string; timestamp: string; data?: any };
@@ -200,215 +209,247 @@ const EventDrivenDemo: React.FC = () => {
   const hints = uiHints(eventType);
 
   return (
-    <div className='container'>
-      <div className='header'>
-        <h1>RabbitMQ Events</h1>
-        <div className='small'>
-          Dogodkovno vodena arhitektura z RabbitMQ (AMQP) + SSE
-        </div>
-      </div>
+    <div className='max-w-6xl mx-auto'>
+      <div className='bg-gray-800 rounded-lg shadow-lg p-6 mb-6'>
+        <h2 className='text-3xl font-bold text-teal-400 mb-2 flex items-center'>
+          <FaStream className='mr-3' /> RabbitMQ Events
+        </h2>
+        <p className='text-gray-400 mb-6'>
+          Event-driven architecture with RabbitMQ (AMQP) + Server-Sent Events
+        </p>
 
-      <div className='card'>
-        <h3>Stanje povezave</h3>
-        <button
-          className='btn secondary'
-          onClick={checkHealth}
-          disabled={checking}>
-          {checking ? "Preverjam..." : "Preveri povezavo"}
-        </button>
-        {connected === true && (
-          <span className='small' style={{ color: "green", marginLeft: 8 }}>
-            ✓ Povezano
-          </span>
-        )}
-        {connected === false && (
-          <span className='small' style={{ color: "red", marginLeft: 8 }}>
-            ✗ Ni povezano
-          </span>
-        )}
-        {stats && (
-          <span className='small' style={{ marginLeft: 16 }}>
-            Queue: {stats.messageCount || 0} | Consumers:{" "}
-            {stats.consumerCount || 0}
-          </span>
-        )}
-        <button
-          className='btn secondary'
-          style={{ marginLeft: 12 }}
-          onClick={fetchStats}>
-          Osveži statistiko
-        </button>
-        {error && (
-          <div className='error' style={{ marginTop: 6 }}>
-            {error}
+        <div className='bg-gray-700 rounded-lg p-4 mb-4'>
+          <h3 className='text-xl font-semibold text-white mb-3'>
+            Connection Status
+          </h3>
+          <div className='flex gap-3 items-center flex-wrap'>
+            <button
+              className='bg-teal-500 hover:bg-teal-600 disabled:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors'
+              onClick={checkHealth}
+              disabled={checking}>
+              {checking ? "Checking..." : "Check Connection"}
+            </button>
+            {connected === true && (
+              <span className='flex items-center text-green-400 font-medium'>
+                <FaCheckCircle className='mr-2' /> Connected
+              </span>
+            )}
+            {connected === false && (
+              <span className='flex items-center text-red-400 font-medium'>
+                <FaTimesCircle className='mr-2' /> Disconnected
+              </span>
+            )}
+            {stats && (
+              <span className='text-gray-400 text-sm'>
+                Queue:{" "}
+                <span className='text-teal-300'>{stats.messageCount || 0}</span>{" "}
+                | Consumers:{" "}
+                <span className='text-teal-300'>
+                  {stats.consumerCount || 0}
+                </span>
+              </span>
+            )}
+            <button
+              className='bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-lg flex items-center transition-colors'
+              onClick={fetchStats}>
+              <FaSync className='mr-2' /> Refresh Stats
+            </button>
           </div>
-        )}
-      </div>
-
-      <div className='card'>
-        <h3>Objavi dogodek</h3>
-        <div className='row' style={{ gap: 8, alignItems: "center" }}>
-          <label className='small'>Tip:</label>
-          <select
-            className='input'
-            value={eventType}
-            onChange={(e) => setEventType(e.target.value)}>
-            <option value='attraction-added'>Dodana atrakcija</option>
-            <option value='attraction-updated'>Posodobljena atrakcija</option>
-            <option value='attraction-deleted'>Izbrisana atrakcija</option>
-            <option value='attraction-visited'>Obisk atrakcije</option>
-          </select>
-          {(eventType === "attraction-deleted" ||
-            eventType === "attraction-updated") && (
-            <>
-              <label className='small'>Izberi atrakcijo:</label>
-              <select
-                className='input'
-                value={selectedName}
-                onChange={(e) => {
-                  const n = e.target.value;
-                  setSelectedName(n);
-                  const item = attractions.find((a) => a.name === n);
-                  if (eventType === "attraction-updated" && item) {
-                    setName(item.name);
-                    setDesc(item.description || "");
-                  }
-                  if (eventType === "attraction-deleted") {
-                    setName(n);
-                    setDesc("");
-                  }
-                }}>
-                <option value=''>(izberi)</option>
-                {attractions.map((a) => (
-                  <option key={a.name} value={a.name}>
-                    {a.name}
-                  </option>
-                ))}
-              </select>
-            </>
+          {error && (
+            <div className='mt-3 bg-red-900 border border-red-700 text-red-200 px-3 py-2 rounded-lg text-sm'>
+              {error}
+            </div>
           )}
-          <label className='small'>Ime:</label>
-          <input
-            className='input'
-            placeholder={hints.namePh}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            style={{ minWidth: 220 }}
-          />
-          <label
-            className='small'
-            style={{ opacity: hints.descDisabled ? 0.6 : 1 }}>
-            Opis:
-          </label>
-          <input
-            className='input'
-            placeholder={hints.descPh}
-            disabled={hints.descDisabled}
-            value={hints.descDisabled ? "" : desc}
-            onChange={(e) => setDesc(e.target.value)}
-            style={{ minWidth: 260, opacity: hints.descDisabled ? 0.6 : 1 }}
-          />
-          <button
-            className='btn'
-            onClick={publish}
-            disabled={publishing || !name.trim()}>
-            {publishing ? "Objavljam..." : "Objavi"}
-          </button>
         </div>
-        <div className='small' style={{ marginTop: 6 }}>
-          {hints.note} Dogodki gredo v vrsto <code>attraction-events</code>,
-          consumer jih procesira asinhrono in pošlje SSE.
-        </div>
-        <div className='row' style={{ gap: 8, marginTop: 8 }}>
-          <button className='btn secondary' onClick={fetchAttractions}>
-            Preglej atrakcije
-          </button>
-        </div>
-      </div>
 
-      <div className='card'>
-        <h3>Poslušaj (SSE)</h3>
-        {!listening ? (
-          <button className='btn' onClick={startListening}>
-            ▶️ Začni
-          </button>
-        ) : (
-          <button className='btn secondary' onClick={stopListening}>
-            ⏸️ Ustavi
-          </button>
-        )}
-        {events.length > 0 && (
-          <div style={{ marginTop: 12 }}>
-            <h4>Procesirani dogodki ({events.length})</h4>
-            <div
-              style={{
-                maxHeight: 380,
-                overflowY: "auto",
-                display: "flex",
-                flexDirection: "column",
-                gap: 8,
-              }}>
-              {events.map((e, i) => (
-                <div
-                  key={i}
-                  style={{
-                    border: "1px solid #ddd",
-                    borderRadius: 4,
-                    padding: 10,
-                    background: "#f9f9f9",
+        <div className='bg-gray-700 rounded-lg p-4 mb-4'>
+          <h3 className='text-xl font-semibold text-white mb-3'>
+            Publish Event
+          </h3>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+            <div>
+              <label className='block text-sm font-medium text-gray-300 mb-2'>
+                Event Type
+              </label>
+              <select
+                className='w-full bg-gray-600 text-white border border-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400'
+                value={eventType}
+                onChange={(e) => setEventType(e.target.value)}>
+                <option value='attraction-added'>Added Attraction</option>
+                <option value='attraction-updated'>Updated Attraction</option>
+                <option value='attraction-deleted'>Deleted Attraction</option>
+                <option value='attraction-visited'>Visited Attraction</option>
+              </select>
+            </div>
+
+            {(eventType === "attraction-deleted" ||
+              eventType === "attraction-updated") && (
+              <div>
+                <label className='block text-sm font-medium text-gray-300 mb-2'>
+                  Select Attraction
+                </label>
+                <select
+                  className='w-full bg-gray-600 text-white border border-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400'
+                  value={selectedName}
+                  onChange={(e) => {
+                    const n = e.target.value;
+                    setSelectedName(n);
+                    const item = attractions.find((a) => a.name === n);
+                    if (eventType === "attraction-updated" && item) {
+                      setName(item.name);
+                      setDesc(item.description || "");
+                    }
+                    if (eventType === "attraction-deleted") {
+                      setName(n);
+                      setDesc("");
+                    }
                   }}>
+                  <option value=''>(select)</option>
+                  {attractions.map((a) => (
+                    <option key={a.name} value={a.name}>
+                      {a.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            <div>
+              <label className='block text-sm font-medium text-gray-300 mb-2'>
+                Name
+              </label>
+              <input
+                className='w-full bg-gray-600 text-white border border-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400'
+                placeholder={hints.namePh}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className='block text-sm font-medium text-gray-300 mb-2'>
+                Description
+              </label>
+              <input
+                className='w-full bg-gray-600 text-white border border-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400 disabled:opacity-50'
+                placeholder={hints.descPh}
+                disabled={hints.descDisabled}
+                value={hints.descDisabled ? "" : desc}
+                onChange={(e) => setDesc(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className='mt-4 flex gap-3 items-center'>
+            <button
+              className='bg-teal-500 hover:bg-teal-600 disabled:bg-gray-600 text-white font-semibold px-6 py-2 rounded-lg flex items-center transition-colors'
+              onClick={publish}
+              disabled={publishing || !name.trim()}>
+              <FaPaperPlane className='mr-2' />
+              {publishing ? "Publishing..." : "Publish"}
+            </button>
+            <button
+              className='bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-lg transition-colors'
+              onClick={fetchAttractions}>
+              View Attractions
+            </button>
+          </div>
+
+          <div className='mt-3 text-gray-400 text-sm'>
+            {hints.note} Events go to{" "}
+            <code className='bg-gray-900 px-2 py-1 rounded text-teal-300'>
+              attraction-events
+            </code>{" "}
+            queue, consumer processes them asynchronously and sends SSE.
+          </div>
+        </div>
+
+        <div className='bg-gray-700 rounded-lg p-4'>
+          <h3 className='text-xl font-semibold text-white mb-3'>
+            Listen (SSE)
+          </h3>
+          {!listening ? (
+            <button
+              className='bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-2 rounded-lg flex items-center transition-colors'
+              onClick={startListening}>
+              <FaPlay className='mr-2' /> Start Listening
+            </button>
+          ) : (
+            <button
+              className='bg-gray-600 hover:bg-gray-500 text-white font-semibold px-6 py-2 rounded-lg flex items-center transition-colors'
+              onClick={stopListening}>
+              <FaPause className='mr-2' /> Stop Listening
+            </button>
+          )}
+
+          {events.length > 0 && (
+            <div className='mt-4'>
+              <h4 className='text-lg font-semibold text-teal-300 mb-3'>
+                Processed Events ({events.length})
+              </h4>
+              <div className='max-h-96 overflow-y-auto space-y-3'>
+                {events.map((e, i) => (
                   <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}>
-                    <strong>{label(e.event.type)}</strong>
-                    <span className='small'>
-                      {new Date(e.event.timestamp).toLocaleTimeString()}
-                    </span>
-                  </div>
-                  <div className='small'>{e.result.message}</div>
-                  {e.event.data?.description && (
-                    <div className='small' style={{ color: "#666" }}>
-                      {e.event.data.description}
+                    key={i}
+                    className='bg-gray-600 rounded-lg p-4 border border-gray-500'>
+                    <div className='flex justify-between items-start mb-2'>
+                      <strong className='text-white'>
+                        {label(e.event.type)}
+                      </strong>
+                      <span className='text-gray-400 text-sm'>
+                        {new Date(e.event.timestamp).toLocaleTimeString()}
+                      </span>
                     </div>
-                  )}
-                  <div className='small' style={{ color: "#999" }}>
-                    ID: {e.event.id}
+                    <div className='text-gray-300 text-sm'>
+                      {e.result.message}
+                    </div>
+                    {e.event.data?.description && (
+                      <div className='text-gray-400 text-sm mt-1'>
+                        {e.event.data.description}
+                      </div>
+                    )}
+                    <div className='text-gray-500 text-xs mt-2'>
+                      ID: {e.event.id}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-        {attractions.length > 0 && (
-          <div style={{ marginTop: 12 }}>
-            <h4>Seznam atrakcij ({attractions.length})</h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {attractions.map((a) => (
-                <div
-                  key={a.name}
-                  className='small'
-                  style={{
-                    border: "1px dashed #ddd",
-                    borderRadius: 4,
-                    padding: 6,
-                  }}>
-                  <strong>{a.name}</strong>
-                  {a.description && <span> — {a.description}</span>}
-                  {typeof a.visits === "number" && a.visits > 0 && (
-                    <span style={{ marginLeft: 6 }}>(obiskov: {a.visits})</span>
-                  )}
-                </div>
-              ))}
+          )}
+
+          {attractions.length > 0 && (
+            <div className='mt-4'>
+              <h4 className='text-lg font-semibold text-teal-300 mb-3'>
+                Attractions List ({attractions.length})
+              </h4>
+              <div className='grid grid-cols-1 md:grid-cols-2 gap-3'>
+                {attractions.map((a) => (
+                  <div
+                    key={a.name}
+                    className='bg-gray-600 rounded-lg p-3 border border-dashed border-gray-500'>
+                    <div className='text-white font-semibold'>{a.name}</div>
+                    {a.description && (
+                      <div className='text-gray-300 text-sm mt-1'>
+                        {a.description}
+                      </div>
+                    )}
+                    {typeof a.visits === "number" && a.visits > 0 && (
+                      <div className='text-teal-400 text-xs mt-1'>
+                        Visits: {a.visits}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-        {listening && events.length === 0 && (
-          <div className='small' style={{ marginTop: 8, color: "#666" }}>
-            Čakam na dogodke...
-          </div>
-        )}
+          )}
+
+          {listening && events.length === 0 && (
+            <div className='mt-4 text-gray-400 text-sm'>
+              Waiting for events...
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

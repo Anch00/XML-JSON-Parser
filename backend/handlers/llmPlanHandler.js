@@ -12,7 +12,7 @@ const SELECTED_MODEL = process.env.GEMINI_MODEL;
 
 /**
  * Express handler: Generate trip plan via Gemini.
- * Expects JSON body { city: string, country?: string, startDate: string (YYYY-MM-DD), endDate?: string (YYYY-MM-DD) }
+ * Expects JSON body { city: string, country?: string, startDate: string (YYYY-MM-DD), endDate?: string (YYYY-MM-DD), attractions?: Array }
  * Returns structured JSON matching TripPlan schema.
  */
 async function handleLLMTripPlan(req, res) {
@@ -21,11 +21,27 @@ async function handleLLMTripPlan(req, res) {
       return res.status(500).json({ error: "Gemini API not configured" });
     }
 
-    const { city, country, startDate, endDate } = req.body || {};
+    const { city, country, startDate, endDate, attractions } = req.body || {};
     if (!city || !startDate) {
       return res
         .status(400)
         .json({ error: "Missing required fields: city, startDate" });
+    }
+
+    // Limit trip duration to 5 days maximum for performance
+    let effectiveEndDate = endDate;
+    if (startDate && endDate) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      const daysDiff = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+      if (daysDiff > 5) {
+        const maxEnd = new Date(start);
+        maxEnd.setDate(start.getDate() + 5);
+        effectiveEndDate = maxEnd.toISOString().split("T")[0];
+        console.log(
+          `[LLM] Trip duration limited to 5 days: ${startDate} to ${effectiveEndDate}`
+        );
+      }
     }
 
     // Ensure a model is specified
@@ -36,65 +52,45 @@ async function handleLLMTripPlan(req, res) {
       });
     }
     const model = genAI.getGenerativeModel({ model: SELECTED_MODEL });
-    // Optional tiny availability check (fast) to confirm the selected model works
-    try {
-      await model.generateContent({
-        contents: [{ role: "user", parts: [{ text: "ping" }] }],
-      });
-    } catch (e) {
-      console.error(
-        "Selected Gemini model seems unavailable:",
-        SELECTED_MODEL,
-        e?.status || e?.message || e
-      );
-      return res.status(502).json({
-        error: `Selected model '${SELECTED_MODEL}' is not available or unsupported`,
-        details: e?.message || String(e),
-        hint: "Update GEMINI_MODEL in .env to a supported model and restart.",
-      });
-    }
     console.log("[LLM] Using Gemini model:", SELECTED_MODEL);
 
     const now = new Date();
     const currentIso = now.toISOString();
 
+    // Build attractions context if provided
+    let attractionsContext = "";
+    if (attractions && Array.isArray(attractions) && attractions.length > 0) {
+      attractionsContext = `\n\nThe user has provided the following attractions they want to visit:\n${attractions
+        .map((a) => `- ${a.name}${a.description ? ": " + a.description : ""}`)
+        .join(
+          "\n"
+        )}\n\nPlease prioritize including these attractions in the itinerary when appropriate.`;
+    }
+
     // System + user prompt: ask for strict JSON conforming to schema
-    const prompt = `You are a vacation trip planner.
-Plan an optimized daily itinerary for a user visiting ${city}${
+    const prompt = `Plan ${city}${
       country ? ", " + country : ""
-    }.
-Trip dates: start ${startDate}${endDate ? ", end " + endDate : " (single day)"}.
-Consider typical weather for these dates, opening hours, proximity, and avoid backtracking.
-Return ONLY strict JSON that conforms exactly to the following TypeScript schema (no markdown, no extra text):
-{
-  "destination": string,
-  "startDate": string, // ISO yyyy-mm-dd
-  "endDate": string,   // ISO yyyy-mm-dd
-  "days": Array<{
-    "date": string, // ISO yyyy-mm-dd
-    "weatherNote": string,
-    "summary": string,
-    "activities": Array<{
-      "time": string, // HH:MM
-      "title": string,
-      "type": "sightseeing" | "museum" | "food" | "outdoor" | "shopping" | "transport" | "other",
-      "address": string,
-      "durationMinutes": number,
-      "notes"?: string,
-      "costEstimate"?: number
-    }>
-  }>,
-  "tips": string[]
-}
+    } itinerary ${startDate} to ${
+      effectiveEndDate || startDate
+    }.${attractionsContext}
+
+JSON format:
+{"destination":"${city}","startDate":"${startDate}","endDate":"${
+      endDate || startDate
+    }","googleMapsRoute":"https://www.google.com/maps/dir/?api=1&origin=First&destination=Last&waypoints=Loc2|Loc3","days":[{"date":"yyyy-mm-dd","weatherNote":"Sunny 20C","summary":"brief","activities":[{"time":"09:00","title":"Location","type":"sightseeing","address":"short","durationMinutes":60,"notes":"brief","costEstimate":10}]}],"tips":["tip1","tip2"]}
+
 Rules:
-- Base recommendations on ${city} and dates; if exact weather is unknown, infer typical seasonal conditions.
-- Prefer walking clusters; group nearby points.
-- Include realistic times and durations.
-- If endDate is missing, produce a single-day plan for startDate.
-- Ensure JSON is valid and parseable.`;
+- 3-4 activities/day max
+- Keep all text fields SHORT (notes: 5 words max, weatherNote: 3 words)
+- Brief addresses
+- Valid JSON only`;
 
     const result = await model.generateContent({
       contents: [{ role: "user", parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.5, // Balanced: speed + creativity
+        maxOutputTokens: 8192, // More room for detailed plans
+      },
     });
     const rawText = result?.response?.text?.();
     if (!rawText) {
@@ -111,9 +107,16 @@ Rules:
     try {
       parsed = JSON.parse(jsonStr);
     } catch (e) {
-      return res
-        .status(502)
-        .json({ error: "Failed to parse JSON from model", raw: rawText });
+      console.error("[LLM] JSON parse error:", e.message);
+      console.error(
+        "[LLM] Raw response (first 500 chars):",
+        rawText.substring(0, 500)
+      );
+      return res.status(502).json({
+        error: "Failed to parse JSON from model",
+        raw: rawText.substring(0, 1000),
+        parseError: e.message,
+      });
     }
 
     // Attach metadata

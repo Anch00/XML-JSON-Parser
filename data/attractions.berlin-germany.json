@@ -1,6 +1,6 @@
 {
   "citySlug": "berlin-germany",
-  "updatedAt": "2025-12-02T13:08:42.158Z",
+  "updatedAt": "2026-01-14T00:52:02.233Z",
   "attractions": [
     {
       "name": "Berliner Unterwelten (Subterranean Berlin)",
@@ -46,11 +46,6 @@
       "name": "Café Strauss",
       "description": "",
       "url": "https://www.atlasobscura.com/places/cafe-strauss-berlin"
-    },
-    {
-      "name": "Prinzessinnengarten",
-      "description": "",
-      "url": "https://www.atlasobscura.com/places/prinzessinnengarten"
     }
   ]
 }

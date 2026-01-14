@@ -1,56 +1,51 @@
 {
-  "citySlug": "london-england",
-  "updatedAt": "2025-12-02T13:09:22.307Z",
+  "citySlug": "berlin-germany",
+  "updatedAt": "2026-01-14T00:52:02.233Z",
   "attractions": [
     {
-      "name": "Leadenhall Market",
+      "name": "Berliner Unterwelten (Subterranean Berlin)",
       "description": "",
-      "url": "https://www.atlasobscura.com/places/leadenhall-market"
+      "url": "https://www.atlasobscura.com/places/berliner-unterwelten-subterranean-berlin"
     },
     {
-      "name": "Highgate Cemetery",
+      "name": "Liquidrom",
       "description": "",
-      "url": "https://www.atlasobscura.com/places/highgate-cemetery"
+      "url": "https://www.atlasobscura.com/places/liquidrom"
     },
     {
-      "name": "The Ruins of St. Dunstan-in-the-East",
+      "name": "Monsterkabinett",
       "description": "",
-      "url": "https://www.atlasobscura.com/places/the-ruins-of-st-dunstan-in-the-east-london-england"
+      "url": "https://www.atlasobscura.com/places/monster-kabinett"
     },
     {
-      "name": "God's Own Junkyard",
+      "name": "Berlin Botanical Garden",
       "description": "",
-      "url": "https://www.atlasobscura.com/places/gods-own-junkyard"
+      "url": "https://www.atlasobscura.com/places/berlin-botanical-garden"
     },
     {
-      "name": "Twinings Tea Shop",
+      "name": "Tajikistan Tearoom",
       "description": "",
-      "url": "https://www.atlasobscura.com/places/twinings-tea-shop"
+      "url": "https://www.atlasobscura.com/places/tajikistan-tearoom"
     },
     {
-      "name": "The Viktor Wynd Museum of Curiosities, Fine Art & Natural History",
+      "name": "Pergamon Museum",
       "description": "",
-      "url": "https://www.atlasobscura.com/places/the-viktor-wynd-museum-of-curiosities-fine-art-natural-history-london-england"
+      "url": "https://www.atlasobscura.com/places/pergamon-museum"
     },
     {
-      "name": "Cecil Court",
+      "name": "Design Panoptikum",
       "description": "",
-      "url": "https://www.atlasobscura.com/places/cecil-court"
+      "url": "https://www.atlasobscura.com/places/design-panoptikum"
     },
     {
-      "name": "Café in the Crypt",
+      "name": "Burgermeister",
       "description": "",
-      "url": "https://www.atlasobscura.com/places/cafe-in-the-crypt"
+      "url": "https://www.atlasobscura.com/places/burgermeister"
     },
     {
-      "name": "The Mayflower Pub",
+      "name": "Café Strauss",
       "description": "",
-      "url": "https://www.atlasobscura.com/places/the-mayflower-pub-london-england"
-    },
-    {
-      "name": "Philpot Lane Mice Sculpture",
-      "description": "",
-      "url": "https://www.atlasobscura.com/places/philpot-lane-mice"
+      "url": "https://www.atlasobscura.com/places/cafe-strauss-berlin"
     }
   ]
 }

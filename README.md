@@ -1,194 +1,329 @@
-# 🧩 XML Parser & Analyzer
+# 🚗 DriveBeat Trips - Smart Travel Planning Application
 
-Pametna **React + TypeScript** aplikacija za **analizo, povezovanje in filtriranje XML podatkov** — neposredno v brskalniku.
-
-💡 Naloži svoje XML datoteke, aplikacija jih samodejno razbere, poveže po ID-jih, omogoči napredno filtriranje in izvoz v **JSON** ali **XML** format.  
-Popolno orodje za hitro analizo strukturiranih podatkov brez programiranja in brez backenda.
+**DriveBeat Trips** je pametna aplikacija za načrtovanje potovanj in odkrivanje nenavadnih znamenitosti. Aplikacija združuje več spletnih storitev in tehnologij za pridobivanje podatkov ter omogoča avtomatsko generiranje personaliziranih potovalnih načrtov.
 
 ---
 
-## 🚀 Ključne Funkcionalnosti
+## 🌟 Glavne Funkcionalnosti
 
-### 🗂️ Pametno delo z XML datotekami
+### 🗺️ DriveBeat - Načrtovanje Potovanj
 
-- Podpora za **več datotek hkrati**
-- Samodejno **prepoznavanje strukture** in povezovanje prek ID atributov
-- Brez strežnika – vse se izvaja **lokalno v brskalniku**
-- Deluje z **vsemi vrstami XML struktur**
+#### 🔍 Iskanje Atrakcij (Web Scraping)
 
-### 🔍 Napredno filtriranje
+- Pridobivanje podatkov o nenavadnih turističnih znamenitostih z različnih spletnih virov
+- Podpora za različne destinacije (Berlin, London, itd.)
+- Shranjevanje najdenih atrakcij za kasnejšo uporabo v načrtovanju
+- Izvoz rezultatov v JSON format
 
-- Dinamični filtri po poljubnih poljih
-- Operacije: `vsebuje`, `=`, `>`, `<`, `≥`, `≤`
-- Samodejno prilagajanje tipov (npr. številke, datumi, boolean)
-- Instantni prikaz rezultatov med tipkanjem
+#### 🤖 AI Načrtovalec Poti (LLM Integration)
 
-### 🔗 Povezovanje podatkov
+- Uporaba Google Gemini AI za generiranje personaliziranih potovalnih načrtov
+- Vnos destinacije, datumov in preferenc
+- Avtomatska razporeditev aktivnosti po dnevih
+- Vključitev shranjenih atrakcij v načrt
+- **Google Maps integracija** - avtomatska generacija poti z vsemi postanki
+- Vremenske napovedi in priporočila
+- Filtriranje aktivnosti po kategorijah (sightseeing, muzej, hrana, itd.)
+- Ocena stroškov in trajanja aktivnosti
 
-- Avtomatska **denormalizacija XML dokumentov**
-- Povezovanje entitet prek unikatnih **ID-jev** (npr. `artikelId`, `strankaId`)
-- Združevanje povezanih podatkov v enoten pregled
+### 🔧 Tehnološki Moduli
 
-### 📤 Izvoz rezultatov
+Aplikacija vključuje demonstracijo različnih tehnologij za pridobivanje in obdelavo podatkov:
 
-- Izvoz **filtriranih rezultatov** v:
-  - 📄 **JSON (`filtrirano.json`)**
-  - 📄 **XML (`filtrirano.xml`)**
-- Prenos datotek direktno iz brskalnika, brez dodatnih orodij
+#### 📄 XML Parser & Analyzer
 
-### 💡 Dodatno
+- Nalaganje in analiza več XML datotek hkrati
+- Avtomatsko povezovanje podatkov (JOIN operacije)
+- Napredno filtriranje rezultatov
+- Izvoz v JSON ali XML format
+- Vizualni prikaz podatkov v tabelah
 
-- **Modern UI** (responsive dizajn, jasne tabele, ikone)
-- **Napredna validacija XML** in obravnava napak
-- **Vizualni loading states**
-- Optimizirano za **velike količine podatkov**
-- Deluje v vseh sodobnih brskalnikih
+#### 📊 PC-Axis Vizualizacija
+
+- Branje in analiza .px statističnih datotek
+- Grafični prikaz podatkov (grafi, diagrami)
+- Interaktivna vizualizacija
+
+#### ⚡ gRPC Demo
+
+- Komunikacija med storitvami preko gRPC protokola
+- Hitri RPC klici za izmenjavo podatkov
+- Demonstracija moderne storitvene arhitekture
+
+#### 🔌 Named Pipes Demo
+
+- Medprocesna komunikacija preko Named Pipes
+- Izmenjava podatkov med procesi
+
+#### 📨 Event-Driven Architecture (RabbitMQ)
+
+- Asinhrona komunikacija preko sporočilne vrste
+- Publish/Subscribe vzorec
+- Demonstracija dogodkovno vodene arhitekture
 
 ---
-
-## 🧠 Primeri filtrov
-
-| Primer filtra                  | Opis                                 |
-| ------------------------------ | ------------------------------------ |
-| `zaloga < 5`                   | Artikli z majhno zalogo              |
-| `status = "V obdelavi"`        | Naročila, ki so še v obdelavi        |
-| `drzava = "Slovenija"`         | Dobavitelji iz Slovenije             |
-| `datumNarocila > "2024-10-01"` | Naročila po določenem datumu         |
-| `kategorija vsebuje "Tech"`    | Artikli v kategoriji z besedo "Tech" |
-
----
-
-## 📁 Mock podatki (za testiranje)
-
-V mapi [`/data`](./data) so priložene testne datoteke, s katerimi lahko hitro preizkusiš aplikacijo:
-
-- `artikli.xml`
-- `dobavitelji.xml`
-- `narocila.xml`
-- `stranke.xml`
-
-Primer strukture:
-
-```xml
-<artikel id="ART001">
-  <naziv>Prenosnik Lenovo ThinkPad</naziv>
-  <cena>899.99</cena>
-  <zaloga>12</zaloga>
-  <dobaviteljId>DOB001</dobaviteljId>
-  <datumDodajanja>2024-01-15</datumDodajanja>
-  <aktivn>true</aktivn>
-</artikel>
-```
 
 ## 🛠️ Tehnologije
 
-| Področje      | Uporabljeno orodje / knjižnica      |
-| ------------- | ----------------------------------- |
-| Frontend      | React 18 + TypeScript               |
-| Build Tool    | Vite                                |
-| XML Parsing   | Native DOM Parser API               |
-| CSS Framework | Tailwind CSS (modern responsive UI) |
-| Backend       | Node + Express                      |
+### Frontend
 
-## ⚙️ Namestitev in zagon
+- **React 18** + **TypeScript**
+- **Vite** (build tool)
+- **Tailwind CSS** (modern responsive design)
+- **React Icons** (ikone)
+- **Axios** (HTTP klici)
+- **Chart.js** (vizualizacija podatkov)
 
-1️⃣ Kloniraj projekt
+### Backend
+
+- **Node.js** + **Express**
+- **Puppeteer** (web scraping)
+- **Google Gemini AI** (generiranje potovalnih načrtov)
+- **gRPC** (service-to-service communication)
+- **RabbitMQ** (message queuing)
+- **Fast XML Parser** (XML obdelava)
+
+### Uporabljene Tehnologije za Pridobivanje Podatkov
+
+1. **REST API** - komunikacija z Google Gemini AI
+2. **Web Scraping** - Puppeteer za pridobivanje atrakcij
+3. **gRPC** - komunikacija med mikroservisi
+4. **Event-Driven (RabbitMQ)** - asinhrona izmenjava sporočil
+5. **PC-Axis Format** - branje statističnih podatkov
+
+---
+
+## 📋 Zahteve Projekta
+
+Projekt izpolnjuje vse zahteve naloge:
+
+✅ **4+ različnih zunanjih virov podatkov:**
+
+- Web scraping (Atlas Obscura)
+- Google Gemini AI API
+- PC-Axis statistični podatki
+- XML podatkovne datoteke
+- gRPC servisi
+
+✅ **3+ različne tehnologije za dostop:**
+
+- REST API
+- Web Scraping
+- gRPC
+- Event-Driven (RabbitMQ)
+- PC-Axis parser
+
+✅ **Interaktivni uporabniški vmesnik:**
+
+- Iskanje in filtriranje
+- Shranjevanje in uporaba podatkov
+- Izvoz rezultatov
+- Dinamično generiranje načrtov
+
+✅ **Smiselna celota:**
+
+- Povezava med iskanjem atrakcij in generiranjem načrta
+- Logičen pretok podatkov med moduli
+- Uporaba podatkov iz različnih virov za eno funkcionalnost
+
+---
+
+## ⚙️ Namestitev in Zagon
+
+### Predpogoji
+
+- Node.js (v18+)
+- npm ali yarn
+- Google Gemini API ključ
+
+### 1️⃣ Kloniraj projekt
 
 ```bash
-git clone https://github.com/Anch00/XML-JSON-Parser.git
+git clone <repository-url>
 cd xml_parser
 ```
 
-2️⃣ Backend (opcijsko) - namestitev in zagon
+### 2️⃣ Konfiguriraj backend
 
-Če želite uporabiti strežnik, naredite naslednje enostavne korake:
+Ustvari `.env` datoteko v mapi `backend`:
 
-```cmd
+```env
+GEMINI_API_KEY=your_api_key_here
+GEMINI_MODEL=gemini-1.5-flash
+PORT=3000
+```
+
+### 3️⃣ Namesti odvisnosti
+
+```bash
+# Backend
 cd backend
-npm i
-node index.js
-```
-
-3️⃣ Frontend - namestitev in zagon
-
-```bash
-cd frontend
 npm install
-npm run dev
+
+# Frontend
+cd ../frontend
+npm install
 ```
 
-4️⃣ Odpri aplikacijo
+### 4️⃣ Zaženi aplikacijo
 
-```text
-http://localhost:5173
-```
-
-## 🧭 Navodila za uporabo
-
-- Klikni "Choose Files" ali povleci XML datoteke v aplikacijo
-
-- Po nalaganju klikni "Poveži podatke"
-
-- Nastavi filter (npr. zaloga < 10 ali datum > 2024-01-01)
-
-- Preglej rezultate v pregledni tabeli
-
-- Izvozi rezultate z gumbi:
-
-- 💾 "Izvozi JSON"
-
-- 💾 "Izvozi XML"
-
-## 🔧 Razvojni ukazi
+**Možnost 1: Z priloženimi skrip tami (Windows)**
 
 ```bash
-# Zagon aplikacije
-npm run dev
-
-# Build za produkcijo
-npm run build
-
-# Predogled produkcijske verzije
-npm run preview
-
-# Preverjanje tipov
-npx tsc --noEmit
+# V root direktoriju projekta
+start-backend.cmd    # Zažene backend server
+start-app.cmd        # Zažene frontend aplikacijo
 ```
 
-## 🧩 Standardi in smernice razvoja
+**Možnost 2: Ročno**
 
-- Koda napisana v TypeScript za varnost tipov
+```bash
+# Terminal 1 - Backend
+cd backend
+npm start
 
-- Komponente v skladu s React Hooks principom
+# Terminal 2 - Frontend
+cd frontend
+npm run dev
+```
 
-- Modularna arhitektura: components, utils, types
+### 5️⃣ Odpri aplikacijo
 
-- Koda formatirana z Prettier + ESLint
+```
+Frontend: http://localhost:5173
+Backend:  http://localhost:3000
+```
 
-- UI v skladu z Tailwind standardi (mobile-first pristop)
+---
 
-- Polno client-side delovanje – brez zunanjih API-jev
+## 🧭 Navodila za Uporabo
+
+### DriveBeat - Načrtovanje Potovanj
+
+1. **Iskanje Atrakcij:**
+
+   - Pojdi na `DriveBeat > Search Attractions`
+   - Izberi destinacijo iz seznama
+   - Klikni "Search Attractions"
+   - Po končanem iskanju klikni "Save for Planning"
+
+2. **Generiranje Načrta:**
+
+   - Pojdi na `DriveBeat > Generate Plan`
+   - Vnesi destinacijo, državo in datume
+   - (Opcijsko) Označi checkbox za uporabo shranjenih atrakcij
+   - Klikni "Generate Trip Plan"
+   - Pregledaj generirani načrt z aktivnostmi, časi in stroški
+   - Klikni "View Route on Google Maps" za prikaz poti
+
+3. **Filtriranje Aktivnosti:**
+   - V generiranem načrtu uporabi filter za prikaz samo določenih vrst aktivnosti
+   - Izberi med: Sightseeing, Museum, Food & Dining, Outdoor, Shopping, Transport, Other
+
+### Moduli - Tehnološke Demonstracije
+
+#### XML Parser
+
+- Naloži XML datoteke (lahko več hkrati)
+- Aplikacija avtomatsko poveže podatke po ID-jih
+- Nastavi filtre za iskanje specifičnih podatkov
+- Izvozi rezultate v JSON ali XML format
+
+#### PC-Axis Vizualizacija
+
+- Naloži .px datoteko
+- Pregledaj podatke v tabelah in grafih
+- Interaktivna vizualizacija statističnih podatkov
+
+#### gRPC Demo
+
+- Testiraj gRPC komunikacijo med servisi
+- Pošilj zahteve in prejemaj odgovore v realnem času
+
+#### Named Pipes & RabbitMQ
+
+- Demonstracija medprocesne komunikacije
+- Publish/Subscribe vzorec za asinhrono komunikacijo
+
+---
+
+## 📁 Struktura Projekta
+
+```
+xml_parser/
+├── backend/
+│   ├── handlers/          # Request handlers
+│   │   ├── scrapeHandler.js      # Web scraping
+│   │   ├── llmPlanHandler.js     # AI trip planning
+│   │   ├── pxHandler.js          # PC-Axis parser
+│   │   └── ...
+│   ├── grpc/              # gRPC services
+│   ├── pipes/             # Named Pipes implementation
+│   ├── lib/               # Utilities
+│   └── index.js           # Main server
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/    # React components
+│   │   │   ├── AttractionsComponent.tsx
+│   │   │   ├── LLMTripPlanner.tsx
+│   │   │   ├── XMLParserComponent.tsx
+│   │   │   └── ...
+│   │   ├── utils/         # Helper functions
+│   │   ├── types/         # TypeScript type definitions
+│   │   ├── App.tsx        # Main application
+│   │   └── main.tsx       # Entry point
+│   └── package.json
+│
+├── data/                  # Sample data files
+│   ├── attractions.xml
+│   ├── artikli.xml
+│   ├── prenocitvene.px
+│   └── ...
+│
+└── README.md
+```
+
+---
+
+## 🔧 Dodatne Funkcionalnosti (Za Prihodnjo Nadgradnjo)
+
+- 🎵 **Spotify Integration** - Ustvarjanje playlist za vožnjo
+- 📅 **Google Calendar Export** - Izvoz načrta v koledar
+- 🌤️ **OpenWeather API** - Podrobne vremenske napovedi
+- 🗺️ **Google Places API** - Dodatne informacije o lokacijah
+- 💾 **Podatkovn a Baza** - Shranjevanje uporabniških načrtov
+
+---
+
+## 📝 Licence in Avtorstvo
+
+Projekt razvit za potrebe predmeta **Tehnologije Izmenjave Podatkov in Storitev (TIDS)** na **Fakulteti za Elektrotehniko, Računalništvo in Informatiko (FERI)**, Univerza v Mariboru.
+
+---
 
 ## 🤝 Prispevanje
 
-Veseli bomo tvojih idej in izboljšav!
-Sledi standardnemu postopku:
+Veseli bomo tvojih idej in izboljšav! Kontaktiraj nas ali odpri issue/pull request.
 
-- Forkaj projekt
+---
 
-- Ustvari branch: `feature/nova-funkcija`
+## 📞 Kontakt
 
-- Commitaj spremembe:
+Za vprašanja in predloge nas kontaktirajte preko GitHub repozitorija.
 
-```bash
+---
+
+**Uživaj v načrtovanju potovanj s DriveBeat Trips! 🚗✨**
 git commit -m "Dodana nova funkcionalnost"
-```
+
+````
 
 - Pushaj branch:
 
 ```bash
 git push origin feature/nova-funkcija
-```
+````
 
 - Odpri Pull Request 🚀
 

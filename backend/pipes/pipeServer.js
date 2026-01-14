@@ -30,7 +30,7 @@ function summarize(obj) {
 function readAttractions(citySlug) {
   // Tries city-specific file first: data/attractions.<citySlug>.json
   // Fallbacks to data/attractions.json then static demo
-  const dataDir = path.join(process.cwd(), "..", "data");
+  const dataDir = path.join(__dirname, "..", "..", "data");
   const cityFile = path.join(dataDir, `attractions.${citySlug}.json`);
   const defaultFile = path.join(dataDir, "attractions.json");
 

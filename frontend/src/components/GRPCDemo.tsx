@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
+import { FaFilter, FaLink, FaServer, FaStream, FaSync } from "react-icons/fa";
 
 interface FilterCriteria {
   field: string;
@@ -258,221 +259,300 @@ const GRPCDemo: React.FC = () => {
   const availableFields = joined.length ? Object.keys(joined[0]).sort() : [];
 
   return (
-    <div className='container'>
-      <div className='header'>
-        <h1>gRPC Demo</h1>
-        <div className='small'>
-          Nova funkcionalnost preko gRPC (List/Join/Filter/Export + Streaming)
-        </div>
-      </div>
+    <div className='max-w-6xl mx-auto'>
+      <div className='bg-gray-800 rounded-lg shadow-lg p-6 mb-6'>
+        <h2 className='text-3xl font-bold text-teal-400 mb-2 flex items-center'>
+          <FaServer className='mr-3' /> gRPC Demo
+        </h2>
+        <p className='text-gray-400 mb-6'>
+          New functionality via gRPC (List/Join/Filter/Export + Streaming)
+        </p>
 
-      <div className='card'>
-        <h3>Dokumenti v data/ (gRPC ListDocuments)</h3>
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <button
-            className='btn secondary'
-            onClick={refreshDocuments}
-            disabled={docsLoading}>
-            {docsLoading ? "Nalagam..." : "Osveži"}
-          </button>
-          <span className='small'>{documents.length} datotek</span>
+        <div className='bg-gray-700 rounded-lg p-4 mb-4'>
+          <h3 className='text-xl font-semibold text-white mb-3'>
+            Documents in data/ (gRPC ListDocuments)
+          </h3>
+          <div className='flex gap-3 items-center mb-3'>
+            <button
+              className='bg-teal-500 hover:bg-teal-600 disabled:bg-gray-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center transition-colors'
+              onClick={refreshDocuments}
+              disabled={docsLoading}>
+              <FaSync className='mr-2' />
+              {docsLoading ? "Loading..." : "Refresh"}
+            </button>
+            <span className='text-gray-400 text-sm'>
+              {documents.length} files
+            </span>
+          </div>
+          {docsError && (
+            <div className='bg-red-900 border border-red-700 text-red-200 px-3 py-2 rounded-lg text-sm mb-3'>
+              Error: {docsError}
+            </div>
+          )}
+          {!docsLoading && documents.length === 0 && !docsError && (
+            <div className='text-gray-400 text-sm'>
+              No files found in data/ folder
+            </div>
+          )}
+          <div className='space-y-2'>
+            {documents.map((d) => (
+              <label
+                key={d}
+                className='flex items-center gap-3 text-white hover:text-teal-300 cursor-pointer'>
+                <input
+                  type='checkbox'
+                  checked={!!selectedDocs[d]}
+                  onChange={(e) =>
+                    setSelectedDocs((prev) => ({
+                      ...prev,
+                      [d]: e.target.checked,
+                    }))
+                  }
+                  className='w-4 h-4 text-teal-500 bg-gray-600 border-gray-500 rounded focus:ring-teal-400'
+                />
+                <span>{d}</span>
+              </label>
+            ))}
+          </div>
         </div>
-        {docsError && <div className='error'>Napaka: {docsError}</div>}
-        {!docsLoading && documents.length === 0 && !docsError && (
-          <div className='small'>Ni najdenih datotek v mapi data/</div>
-        )}
-        <ul>
-          {documents.map((d) => (
-            <li
-              key={d}
-              style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <input
-                type='checkbox'
-                checked={!!selectedDocs[d]}
-                onChange={(e) =>
-                  setSelectedDocs((prev) => ({
-                    ...prev,
-                    [d]: e.target.checked,
-                  }))
-                }
-              />
-              <span>{d}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
 
-      <div className='card'>
-        <h3>Poveži podatke (gRPC JoinData)</h3>
-        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <button className='btn' onClick={doJoin} disabled={joinLoading}>
-            {joinLoading ? "Povezujem..." : "Poveži"}
-          </button>
-          <span className='small'>
-            {joined.length > 0 ? `Skupno: ${joined.length}` : ""}
-          </span>
-        </div>
-        {joinError && <div className='error'>Napaka: {joinError}</div>}
-        {joined.length > 0 && (
-          <div style={{ overflowX: "auto", marginTop: 8 }}>
-            <table className='table'>
-              <thead>
-                <tr>
-                  {Object.keys(joined[0])
-                    .slice(0, 8)
-                    .map((k) => (
-                      <th key={k}>{k}</th>
-                    ))}
-                </tr>
-              </thead>
-              <tbody>
-                {joined.slice(0, 5).map((row, idx) => (
-                  <tr key={idx}>
+        <div className='bg-gray-700 rounded-lg p-4 mb-4'>
+          <h3 className='text-xl font-semibold text-white mb-3'>
+            Join Data (gRPC JoinData)
+          </h3>
+          <div className='flex gap-3 items-center mb-3'>
+            <button
+              className='bg-teal-500 hover:bg-teal-600 disabled:bg-gray-600 text-white font-semibold px-6 py-2 rounded-lg flex items-center transition-colors'
+              onClick={doJoin}
+              disabled={joinLoading}>
+              <FaLink className='mr-2' />
+              {joinLoading ? "Joining..." : "Join"}
+            </button>
+            <span className='text-gray-400 text-sm'>
+              {joined.length > 0 ? `Total: ${joined.length}` : ""}
+            </span>
+          </div>
+          {joinError && (
+            <div className='bg-red-900 border border-red-700 text-red-200 px-3 py-2 rounded-lg text-sm mb-3'>
+              Error: {joinError}
+            </div>
+          )}
+          {joined.length > 0 && (
+            <div className='overflow-x-auto mt-3'>
+              <table className='w-full text-sm text-left text-gray-300'>
+                <thead className='text-xs uppercase bg-gray-600 text-gray-300'>
+                  <tr>
                     {Object.keys(joined[0])
                       .slice(0, 8)
                       .map((k) => (
-                        <td key={k}>{String(row[k] ?? "")}</td>
+                        <th key={k} className='px-4 py-3'>
+                          {k}
+                        </th>
                       ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <div className='small'>
-              Prikazujem 5 od {joined.length} (vzorec)
+                </thead>
+                <tbody>
+                  {joined.slice(0, 5).map((row, idx) => (
+                    <tr
+                      key={idx}
+                      className='bg-gray-700 border-b border-gray-600 hover:bg-gray-600'>
+                      {Object.keys(joined[0])
+                        .slice(0, 8)
+                        .map((k) => (
+                          <td key={k} className='px-4 py-3'>
+                            {String(row[k] ?? "")}
+                          </td>
+                        ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className='text-gray-400 text-sm mt-2'>
+                Showing 5 of {joined.length} (sample)
+              </div>
             </div>
+          )}
+        </div>
+
+        {joined.length > 0 && (
+          <div className='bg-gray-700 rounded-lg p-4 mb-4'>
+            <h3 className='text-xl font-semibold text-white mb-3 flex items-center'>
+              <FaFilter className='mr-2' /> Filters (gRPC FilterData)
+            </h3>
+            <div className='space-y-3'>
+              {filters.map((f, i) => (
+                <div key={i} className='flex gap-3 items-center flex-wrap'>
+                  <select
+                    className='bg-gray-600 text-white border border-gray-500 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400'
+                    value={f.field}
+                    onChange={(e) => updateFilter(i, "field", e.target.value)}>
+                    <option value=''>-- field --</option>
+                    {availableFields.map((fld) => (
+                      <option key={fld} value={fld}>
+                        {fld}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    className='bg-gray-600 text-white border border-gray-500 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400'
+                    value={f.operator}
+                    onChange={(e) =>
+                      updateFilter(i, "operator", e.target.value)
+                    }>
+                    <option value='contains'>contains</option>
+                    <option value='equals'>=</option>
+                    <option value='greaterThan'>&gt;</option>
+                    <option value='lessThan'>&lt;</option>
+                    <option value='greaterEqual'>≥</option>
+                    <option value='lessEqual'>≤</option>
+                  </select>
+                  <input
+                    className='bg-gray-600 text-white border border-gray-500 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400 flex-1 min-w-[150px]'
+                    value={f.value}
+                    onChange={(e) => updateFilter(i, "value", e.target.value)}
+                  />
+                  <button
+                    className='bg-gray-600 hover:bg-gray-500 disabled:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors'
+                    onClick={() => removeFilter(i)}
+                    disabled={filters.length === 1}>
+                    Remove
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className='flex gap-3 mt-4 items-center flex-wrap'>
+              <button
+                className='bg-teal-500 hover:bg-teal-600 disabled:bg-gray-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors'
+                onClick={doFilter}
+                disabled={filterLoading}>
+                {filterLoading ? "Filtering..." : "Apply"}
+              </button>
+              <button
+                className='bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-lg transition-colors'
+                onClick={addFilter}>
+                Add Filter
+              </button>
+              <span className='text-gray-400 text-sm'>
+                Results: {filtered.length}
+              </span>
+            </div>
+            {filterError && (
+              <div className='bg-red-900 border border-red-700 text-red-200 px-3 py-2 rounded-lg text-sm mt-3'>
+                Error: {filterError}
+              </div>
+            )}
           </div>
         )}
-      </div>
 
-      {joined.length > 0 && (
-        <div className='card'>
-          <h3>Filtri (gRPC FilterData)</h3>
-          {filters.map((f, i) => (
-            <div key={i} className='filter-row'>
-              <select
-                className='input'
-                value={f.field}
-                onChange={(e) => updateFilter(i, "field", e.target.value)}>
-                <option value=''>-- polje --</option>
-                {availableFields.map((fld) => (
-                  <option key={fld} value={fld}>
-                    {fld}
-                  </option>
-                ))}
-              </select>
-              <select
-                className='input'
-                value={f.operator}
-                onChange={(e) => updateFilter(i, "operator", e.target.value)}>
-                <option value='contains'>vsebuje</option>
-                <option value='equals'>=</option>
-                <option value='greaterThan'>&gt;</option>
-                <option value='lessThan'>&lt;</option>
-                <option value='greaterEqual'>≥</option>
-                <option value='lessEqual'>≤</option>
-              </select>
-              <input
-                className='input'
-                value={f.value}
-                onChange={(e) => updateFilter(i, "value", e.target.value)}
-              />
+        {filtered.length > 0 && (
+          <div className='bg-gray-700 rounded-lg p-4 mb-4'>
+            <h3 className='text-xl font-semibold text-white mb-3'>
+              Export (gRPC ExportData)
+            </h3>
+            <div className='flex gap-3'>
               <button
-                className='btn secondary'
-                onClick={() => removeFilter(i)}
-                disabled={filters.length === 1}>
-                Odstrani
+                className='bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors'
+                onClick={doExportJSON}>
+                Export JSON
+              </button>
+              <button
+                className='bg-gray-600 hover:bg-gray-500 text-white px-6 py-2 rounded-lg transition-colors'
+                onClick={doExportXML}>
+                Export XML
               </button>
             </div>
-          ))}
-          <div
-            style={{
-              display: "flex",
-              gap: 8,
-              marginTop: 8,
-              alignItems: "center",
-            }}>
-            <button className='btn' onClick={doFilter} disabled={filterLoading}>
-              {filterLoading ? "Filtriram..." : "Uporabi"}
-            </button>
-            <button className='btn secondary' onClick={addFilter}>
-              Dodaj filter
-            </button>
-            <span className='small'>Rezultatov: {filtered.length}</span>
-          </div>
-          {filterError && <div className='error'>Napaka: {filterError}</div>}
-        </div>
-      )}
-
-      {filtered.length > 0 && (
-        <div className='card'>
-          <h3>Izvoz (gRPC ExportData)</h3>
-          <div style={{ display: "flex", gap: 8 }}>
-            <button className='btn' onClick={doExportJSON}>
-              JSON
-            </button>
-            <button className='btn secondary' onClick={doExportXML}>
-              XML
-            </button>
-          </div>
-        </div>
-      )}
-
-      <div className='card' style={{ marginTop: 20 }}>
-        <h3>Pretakanje znamenitosti (gRPC StreamAttractions)</h3>
-        <div className='row' style={{ gap: 8, alignItems: "center" }}>
-          <label className='small'>Mesto:</label>
-          <input
-            className='input'
-            value={streamCity}
-            onChange={(e) => setStreamCity(e.target.value)}
-          />
-          <button className='btn' onClick={startStream}>
-            Start stream
-          </button>
-          <button className='btn secondary' onClick={stopStream}>
-            Stop
-          </button>
-          <span className='small'>
-            Status: {streamStatus} | Prejeto: {receivedCount}
-          </span>
-        </div>
-        <div className='small' style={{ marginTop: 6 }}>
-          Nasvet: rezultat je odvisen od datoteke v{" "}
-          <code>data/attractions.&lt;mesto&gt;.json</code>. Če datoteka za
-          izbrano mesto ne obstaja, se uporabi zadnje scrapanje (datoteka{" "}
-          <code>data/attractions.json</code>) ali demo podatki.
-        </div>
-        {streamError && <div className='error'>Napaka: {streamError}</div>}
-        {streamStatus === "Connected. Waiting for items..." && (
-          <div className='small'>
-            Prvi rezultati lahko trajajo 10–20s (zaganjanje brskalnika).
           </div>
         )}
-        <ul className='attraction-list'>
-          {attractions.map((a, i) => (
-            <li key={i} className='attraction-item'>
-              {a.url ? (
-                <a
-                  href={a.url}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='attraction-link'>
-                  <strong>{a.name}</strong>
-                </a>
-              ) : (
-                <strong>{a.name}</strong>
-              )}
-              {a.description && (
-                <div className='small' style={{ marginTop: 4 }}>
-                  {a.description}
+
+        <div className='bg-gray-700 rounded-lg p-4'>
+          <h3 className='text-xl font-semibold text-white mb-3 flex items-center'>
+            <FaStream className='mr-2' /> Stream Attractions (gRPC
+            StreamAttractions)
+          </h3>
+          <div className='flex gap-3 items-center flex-wrap mb-3'>
+            <div className='flex-1 min-w-[200px]'>
+              <label className='block text-sm font-medium text-gray-300 mb-2'>
+                City
+              </label>
+              <input
+                className='w-full bg-gray-600 text-white border border-gray-500 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400'
+                value={streamCity}
+                onChange={(e) => setStreamCity(e.target.value)}
+                placeholder='e.g., berlin-germany'
+              />
+            </div>
+            <div className='flex gap-3 items-end'>
+              <button
+                className='bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors'
+                onClick={startStream}>
+                Start Stream
+              </button>
+              <button
+                className='bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-lg transition-colors'
+                onClick={stopStream}>
+                Stop
+              </button>
+            </div>
+          </div>
+          <div className='flex gap-4 text-sm text-gray-400 mb-3'>
+            <span>
+              Status: <span className='text-teal-300'>{streamStatus}</span>
+            </span>
+            <span>
+              Received: <span className='text-teal-300'>{receivedCount}</span>
+            </span>
+          </div>
+          <div className='text-gray-400 text-sm mb-3'>
+            Note: Results depend on{" "}
+            <code className='bg-gray-900 px-2 py-1 rounded text-teal-300'>
+              data/attractions.&lt;city&gt;.json
+            </code>{" "}
+            file. If file doesn't exist, uses latest scraping (
+            <code className='bg-gray-900 px-2 py-1 rounded text-teal-300'>
+              data/attractions.json
+            </code>
+            ) or demo data.
+          </div>
+          {streamError && (
+            <div className='bg-red-900 border border-red-700 text-red-200 px-3 py-2 rounded-lg text-sm mb-3'>
+              Error: {streamError}
+            </div>
+          )}
+          {streamStatus === "Connected. Waiting for items..." && (
+            <div className='text-yellow-400 text-sm mb-3'>
+              First results may take 10–20s (browser startup)
+            </div>
+          )}
+          {attractions.length > 0 && (
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-3 mt-4'>
+              {attractions.map((a, i) => (
+                <div
+                  key={i}
+                  className='bg-gray-600 rounded-lg p-3 hover:bg-gray-500 transition-colors'>
+                  {a.url ? (
+                    <a
+                      href={a.url}
+                      target='_blank'
+                      rel='noreferrer'
+                      className='text-teal-400 hover:text-teal-300 font-semibold text-lg block mb-1'>
+                      {a.name}
+                    </a>
+                  ) : (
+                    <div className='text-white font-semibold text-lg mb-1'>
+                      {a.name}
+                    </div>
+                  )}
+                  {a.description && (
+                    <div className='text-gray-300 text-sm'>{a.description}</div>
+                  )}
                 </div>
-              )}
-            </li>
-          ))}
-        </ul>
-        {receivedCount === 0 && streamStatus !== "Idle" && !streamError && (
-          <div className='small'>Čakam na elemente...</div>
-        )}
+              ))}
+            </div>
+          )}
+          {receivedCount === 0 && streamStatus !== "Idle" && !streamError && (
+            <div className='text-gray-400 text-sm'>Waiting for elements...</div>
+          )}
+        </div>
       </div>
     </div>
   );

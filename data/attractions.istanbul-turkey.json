@@ -1,0 +1,56 @@
+{
+  "citySlug": "istanbul-turkey",
+  "updatedAt": "2026-01-13T23:24:52.438Z",
+  "attractions": [
+    {
+      "name": "Basilica Cisterns of Istanbul",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/basilica-cisterns-istanbul"
+    },
+    {
+      "name": "Ottoman Bird Palaces",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/ottoman-bird-palaces"
+    },
+    {
+      "name": "Tombili",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/tombili"
+    },
+    {
+      "name": "Viking Runes at Hagia Sophia",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/viking-runes-at-hagia-sophia"
+    },
+    {
+      "name": "Tombs of the Sultans",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/tombs-of-the-sultans"
+    },
+    {
+      "name": "Obelisk of Theodosius",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/obelisk-of-theodosius"
+    },
+    {
+      "name": "Hagia Sophia Wishing Column",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/hagia-sophia-wishing-column"
+    },
+    {
+      "name": "Pudding Shop (Lale Restaurant)",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/pudding-shop-lale-restaurant"
+    },
+    {
+      "name": "Pierre Loti Hill",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/pierre-loti-hill"
+    },
+    {
+      "name": "Bar at Biz Istanbul",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/bar-at-biz-istanbul"
+    }
+  ]
+}

@@ -48,9 +48,34 @@ echo         choco install rabbitmq -y
 echo         Then re-run this script as Administrator.
 
 :AFTER_RMQ
+echo(=== Backend ===
+echo Starting backend (Express API + gRPC) in a new window...
+start "Backend" cmd /k "cd /d ""%~dp0\backend"" && node index.js"
+
+echo Waiting 2 seconds for backend to start...
+timeout /t 2 /nobreak >nul
+
+echo(=== Named Pipes Server ===
+echo Starting Named Pipes server in a new window...
+start "Named Pipes" cmd /k "cd /d ""%~dp0\backend\pipes"" && node pipeServer.js"
+
+echo Waiting 2 seconds for servers to start...
+timeout /t 2 /nobreak >nul
+
 echo(=== Frontend ===
 echo Starting frontend (Vite dev server) in a new window...
 start "Frontend" cmd /k "cd /d ""%~dp0\frontend"" && npm run dev"
 
-echo Done. Frontend: http://localhost:5173
+echo(
+echo ============================================
+echo   DriveBeat Trips Application Started!
+echo ============================================
+echo   Backend:     http://localhost:3000
+echo   Frontend:    http://localhost:5173
+echo   RabbitMQ UI: http://localhost:15672
+echo   gRPC:        0.0.0.0:50051 (via Backend)
+echo   Named Pipes: \\.\pipe\xml_data_pipe
+echo   RabbitMQ: http://localhost:15672
+echo ============================================
+echo(
 endlocal
