@@ -1,0 +1,51 @@
+{
+  "citySlug": "madrid-spain",
+  "updatedAt": "2026-01-14T10:01:40.987Z",
+  "attractions": [
+    {
+      "name": "Sobrino de Botin",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/sobrino-de-botin"
+    },
+    {
+      "name": "Palacio de Cristal",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/palacio-de-cristal"
+    },
+    {
+      "name": "Templo de Debod",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/templo-de-debod"
+    },
+    {
+      "name": "Atocha Station Tropical Garden",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/atocha-station-tropical-garden"
+    },
+    {
+      "name": "Chamberí Ghost Station",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/chamberi-ghost-station"
+    },
+    {
+      "name": "Fountain of the Fallen Angel",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/fountain-fallen-angel"
+    },
+    {
+      "name": "Real Jardin Botanico",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/real-jardin-botanico"
+    },
+    {
+      "name": "Kiosko de Horchata Miguel y José",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/kiosko-de-horchata-miguel-y-jose"
+    },
+    {
+      "name": "Secret Nun Cookies at Monasterio del Corpus Christi",
+      "description": "",
+      "url": "https://www.atlasobscura.com/places/secret-nun-cookies-at-monasterio-del-corpus-christi"
+    }
+  ]
+}
